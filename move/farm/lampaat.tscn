@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cwo8uaua34d1"]
+
+[ext_resource type="Texture2D" uid="uid://cfksm0ovpc0b3" path="res://art/Untitled_Artwork.png" id="1_ihkle"]
+[ext_resource type="Script" uid="uid://suanfcppo3v6" path="res://lampaat.gd" id="1_qdglr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihkle"]
+size = Vector2(134, 88.375)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1600128502]
+script = ExtResource("1_qdglr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=865484597]
+position = Vector2(-0.9999995, -4.7683716e-07)
+scale = Vector2(0.15316205, 0.15316206)
+texture = ExtResource("1_ihkle")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1594817807]
+position = Vector2(-3, 18.8125)
+shape = SubResource("RectangleShape2D_ihkle")
+
+[node name="Timer" type="Timer" parent="." unique_id=1586987787]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
