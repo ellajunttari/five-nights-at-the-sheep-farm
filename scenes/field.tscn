@@ -32,7 +32,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 
 [node name="Basket" parent="CanvasLayer/BasketAnchor" unique_id=1409703975 instance=ExtResource("3_lptdg")]
-position = Vector2(-36, -40)
+position = Vector2(-69, -86)
 script = ExtResource("4_7156t")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=443372418]
