@@ -33,6 +33,8 @@ func pickup():
 		if(Global.picks_left > 0): Global.picks_left -= 1
 		
 func surprise():
+	var overlay_node = get_tree().current_scene.find_child("overlay", true, false)
+	overlay_node.get_node("surprise").visible = true
 	print("surprise")
 
 func drop():
