@@ -55,6 +55,22 @@ position = Vector2(-6.1035156e-05, -0.2492981)
 [node name="PhysicsShoop" parent="." unique_id=1177162672 instance=ExtResource("1_ttalb")]
 z_index = 100
 
-[node name="Basket" parent="." unique_id=1409703975 instance=ExtResource("3_lptdg")]
-position = Vector2(456, 202)
+[node name="Basket31" parent="." unique_id=1409703975 instance=ExtResource("3_lptdg")]
+position = Vector2(6, 237)
+script = ExtResource("4_7156t")
+
+[node name="Basket1" parent="." unique_id=1150987232 instance=ExtResource("3_lptdg")]
+position = Vector2(-376, 237)
+script = ExtResource("4_7156t")
+
+[node name="Basket5" parent="." unique_id=1981628567 instance=ExtResource("3_lptdg")]
+position = Vector2(381, 237)
+script = ExtResource("4_7156t")
+
+[node name="Basket3" parent="." unique_id=153491310 instance=ExtResource("3_lptdg")]
+position = Vector2(-183, 237)
+script = ExtResource("4_7156t")
+
+[node name="Basket4" parent="." unique_id=1907130560 instance=ExtResource("3_lptdg")]
+position = Vector2(191, 237)
 script = ExtResource("4_7156t")
