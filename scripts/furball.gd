@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 var is_held = false
+var can_be_picked_up = true # New variable
 
 func _ready():
 	# Ensure the wool doesn't fall off the sheep immediately
@@ -8,34 +9,29 @@ func _ready():
 	add_to_group("draggables")
 
 func _input_event(_viewport, event, _shape_idx):
-	# Check for a left mouse button click
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		# We only trigger on the "pressed" state to avoid double-triggering on release
 		if event.pressed:
-			if not is_held:
+			# Check BOTH if it's not held AND if it's allowed to be picked up
+			if not is_held and can_be_picked_up:
 				pickup()
 
 func pickup():
-	is_held = true
-	freeze = true
-	
-	# 1. Bring to front visually
-	z_index = 100
-	
-	# 2. Detach from sheep so it doesn't move with the sheep anymore
-	if get_parent() != get_tree().current_scene:
-		# We use reparent so it keeps its global position during the move
-		call_deferred("reparent", get_tree().current_scene)
+	if get_parent().name == "fur": 
+		is_held = true
+		freeze = true
+		z_index = 100
+		reparent.call_deferred(get_tree().current_scene)
 
 func drop():
 	is_held = false
 	freeze = false
+	z_index = 0
 	
-	# 1. Reset visual depth
-	z_index = 10
+	# Disable future pick-ups
+	can_be_picked_up = false 
 	
-	# 2. Optional: Give it a tiny push so it doesn't just hang there
-	apply_impulse(Vector2.ZERO)
+	# Optional: Remove from the group so it's no longer "draggable"
+	remove_from_group("draggables")
 
 func _physics_process(_delta):
 	if is_held:
