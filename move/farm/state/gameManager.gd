@@ -13,16 +13,10 @@ signal MORE_SHEEPS(sheeps_in)
 signal MORE_WOLVES(wolves_in)
 
 #how many days
-var _current_day : int = 1:
-	set(v): 
-		_current_day = v
-		day_changed.emit(_current_day)
+var _current_day : int = 1
 
 #is it morning or evening
-var _is_morning : bool = true:
-	set(v):
-		_is_morning = v
-		time_toggled.emit(_is_morning)
+var _is_morning : bool = true
 
 #how many wolves have been found
 var wolf_count : int = 0:

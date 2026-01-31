@@ -60,7 +60,6 @@ func get_head_position():
 	# Return the NPC position + the offset
 	return global_position + current_offset
 ###################################
-
 func _physics_process(delta):
 	
 	if global_position.distance_to(get_global_mouse_position()) < 200:
