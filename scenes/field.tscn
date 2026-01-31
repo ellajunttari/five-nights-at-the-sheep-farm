@@ -58,7 +58,7 @@ position = Vector2(-6.1035156e-05, -0.2492981)
 visible = false
 z_index = 100
 
-[node name="Basket31" parent="." unique_id=1409703975 instance=ExtResource("3_lptdg")]
+[node name="Basket3" parent="." unique_id=1409703975 instance=ExtResource("3_lptdg")]
 position = Vector2(6, 237)
 script = ExtResource("4_7156t")
 
@@ -70,7 +70,7 @@ script = ExtResource("4_7156t")
 position = Vector2(381, 237)
 script = ExtResource("4_7156t")
 
-[node name="Basket3" parent="." unique_id=153491310 instance=ExtResource("3_lptdg")]
+[node name="Basket2" parent="." unique_id=153491310 instance=ExtResource("3_lptdg")]
 position = Vector2(-183, 237)
 script = ExtResource("4_7156t")
 
