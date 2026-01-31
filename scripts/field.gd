@@ -64,11 +64,35 @@ func fade_transition():
 	
 	# Wait at black, then change state
 	tween.tween_callback(func(): current_state = State.EVENING)
+	tween.tween_callback(align_animal_in_line)
 	
 	tween.tween_interval(2.0)
 	
 	# Fade back to Transparent
 	tween.tween_property(fade, "modulate:a", 0.0, 1.5)
+	
+func align_animal_in_line():
+	var animal_list = get_tree().get_nodes_in_group("animal_group")
+	var start_x = -390 # Where the line starts
+	var start_y = -80 # The height of the line
+	var x_spacing = 195  # Distance between each sheep horizontaly
+	var y_spacing = 150 #Distance between rows vertically
+	var max_columns = 5 #how many per row
+	
+	for i in range(animal_list.size()):
+		var animal = animal_list[i]
+		# Calculate grid position
+		var column = i % max_columns # 0, 1, 2, 3, 4, then back to 0
+		var row = i / max_columns    # 0 for first 5, 1 for next 5, etc.
+		
+		var target_pos = Vector2(
+			start_x + (column * x_spacing), 
+			start_y + (row * y_spacing)
+		)
+		# Move them instantly
+		animal.global_position = target_pos
+		# Ensure they stay still
+		animal.linear_velocity = Vector2.ZERO
 
 ####################################
 
@@ -101,7 +125,7 @@ func _process(delta: float) -> void:
 	if current_state == State.MORNING:
 		# Use a check so this only runs ONCE
 		if not morning_started:
-			spawn_multiple_rigidbodies(3)
+			spawn_multiple_rigidbodies(10)
 			morning_started = true
 			
 		# Constant checking (like your picks)
