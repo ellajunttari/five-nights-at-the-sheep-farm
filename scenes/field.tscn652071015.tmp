@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://b0vbatf2qm5g4"]
+
+[ext_resource type="PackedScene" uid="uid://uhky4w4cihjo" path="res://scenes/physics_shoop.tscn" id="1_ttalb"]
+[ext_resource type="Texture2D" uid="uid://56l1t3n3xr0t" path="res://assets/Enviroready.png" id="3_7156t"]
+[ext_resource type="PackedScene" uid="uid://bvd8titndsf0a" path="res://scenes/basket.tscn" id="3_lptdg"]
+[ext_resource type="Script" uid="uid://vbkjiqyx62c0" path="res://scripts/basket.gd" id="4_7156t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7156t"]
+size = Vector2(333.33337, 2103.3335)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pn4dk"]
+size = Vector2(3281.6665, 415.8334)
+
+[node name="Field" type="Node2D" unique_id=328235976]
+position = Vector2(-5, 10)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=443372418]
+z_index = -10
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_7156t")
+region_rect = Rect2(0, 0, 100, 100)
+
+[node name="Area2D" type="StaticBody2D" parent="Sprite2D" unique_id=1499260272]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" unique_id=1580528191]
+position = Vector2(-1786.6666, 26.666666)
+shape = SubResource("RectangleShape2D_7156t")
+
+[node name="Area2D2" type="StaticBody2D" parent="Sprite2D" unique_id=1683405889]
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite2D/Area2D2" unique_id=1931711217]
+position = Vector2(1873.3333, 16.666668)
+shape = SubResource("RectangleShape2D_7156t")
+
+[node name="Area2D3" type="StaticBody2D" parent="Sprite2D" unique_id=1112744453]
+collision_mask = 0
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Sprite2D/Area2D3" unique_id=17877053]
+position = Vector2(54.99994, -873.3333)
+shape = SubResource("RectangleShape2D_pn4dk")
+
+[node name="Area2D4" type="StaticBody2D" parent="Sprite2D" unique_id=83836947]
+position = Vector2(0, 1633.3333)
+collision_mask = 0
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Sprite2D/Area2D4" unique_id=1291293365]
+position = Vector2(49.999996, -633.3334)
+shape = SubResource("RectangleShape2D_pn4dk")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=909081019]
+position = Vector2(-6.1035156e-05, -0.2492981)
+
+[node name="PhysicsShoop" parent="." unique_id=1177162672 instance=ExtResource("1_ttalb")]
+z_index = 100
+
+[node name="Basket" parent="." unique_id=1409703975 instance=ExtResource("3_lptdg")]
+position = Vector2(456, 202)
+script = ExtResource("4_7156t")
