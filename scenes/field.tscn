@@ -5,28 +5,17 @@
 [ext_resource type="PackedScene" uid="uid://bvd8titndsf0a" path="res://scenes/basket.tscn" id="3_lptdg"]
 [ext_resource type="Script" uid="uid://vbkjiqyx62c0" path="res://scenes/basket.gd" id="4_7156t"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7156t"]
+size = Vector2(333.33337, 2103.3335)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pn4dk"]
+size = Vector2(3093.3335, 415.8334)
+
 [node name="Field" type="Node2D" unique_id=328235976]
-position = Vector2(0, -72)
-scale = Vector2(1e-05, 1e-05)
-
-[node name="PhysicsShoop" parent="." unique_id=1177162672 instance=ExtResource("1_ttalb")]
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=909081019]
-position = Vector2(-6.1035156e-05, -0.2492981)
+position = Vector2(-5, 10)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=149313852]
-layer = -1
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1524633808]
-z_index = -10
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_ttalb")
-expand_mode = 1
-stretch_mode = 6
+layer = 0
 
 [node name="BasketAnchor" type="Control" parent="CanvasLayer" unique_id=876397817]
 layout_mode = 3
@@ -43,5 +32,46 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 
 [node name="Basket" parent="CanvasLayer/BasketAnchor" unique_id=1409703975 instance=ExtResource("3_lptdg")]
-position = Vector2(-50, -50)
+position = Vector2(-36, -40)
 script = ExtResource("4_7156t")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=443372418]
+z_index = -10
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_ttalb")
+region_rect = Rect2(0, 0, 100, 100)
+
+[node name="Area2D" type="StaticBody2D" parent="Sprite2D" unique_id=1499260272]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" unique_id=1580528191]
+position = Vector2(-1753.3335, -8.333384)
+shape = SubResource("RectangleShape2D_7156t")
+
+[node name="Area2D2" type="StaticBody2D" parent="Sprite2D" unique_id=1683405889]
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite2D/Area2D2" unique_id=1931711217]
+position = Vector2(1746.6666, -23.333332)
+shape = SubResource("RectangleShape2D_7156t")
+
+[node name="Area2D3" type="StaticBody2D" parent="Sprite2D" unique_id=1112744453]
+collision_mask = 0
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Sprite2D/Area2D3" unique_id=17877053]
+position = Vector2(0.00010108948, -787.9166)
+shape = SubResource("RectangleShape2D_pn4dk")
+
+[node name="Area2D4" type="StaticBody2D" parent="Sprite2D" unique_id=83836947]
+position = Vector2(0, 1633.3333)
+collision_mask = 0
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Sprite2D/Area2D4" unique_id=1291293365]
+position = Vector2(-10, -706.6666)
+shape = SubResource("RectangleShape2D_pn4dk")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=909081019]
+position = Vector2(-6.1035156e-05, -0.2492981)
+
+[node name="PhysicsShoop" parent="." unique_id=1177162672 instance=ExtResource("1_ttalb")]
+z_index = 100

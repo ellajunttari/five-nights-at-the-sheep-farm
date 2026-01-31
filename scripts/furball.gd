@@ -14,9 +14,6 @@ func _input_event(_viewport, event, _shape_idx):
 		if event.pressed:
 			if not is_held:
 				pickup()
-			else:
-				# If you want to be able to drop it anywhere by clicking it again
-				drop()
 
 func pickup():
 	is_held = true

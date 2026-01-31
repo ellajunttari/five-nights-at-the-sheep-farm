@@ -1,17 +1,28 @@
 [gd_scene format=3 uid="uid://uhky4w4cihjo"]
 
+[ext_resource type="Script" uid="uid://7xcfsrlemw4w" path="res://scenes/physics_shoop.gd" id="1_7yc3j"]
 [ext_resource type="PackedScene" uid="uid://dpseh8jqketi5" path="res://scenes/furball.tscn" id="2_1lmpo"]
 [ext_resource type="Texture2D" uid="uid://c4jefuvrh12jx" path="res://assets/sprites/shoop_base.png" id="2_7yc3j"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7yc3j"]
+friction = 0.09
+bounce = 0.18
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1lmpo"]
 
 [node name="PhysicsShoop" type="RigidBody2D" unique_id=1177162672]
-z_index = 1
+z_index = 3
 position = Vector2(2, -2)
 collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_7yc3j")
 gravity_scale = 0.0
+can_sleep = false
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_7yc3j")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1554308123]
+z_index = 90
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_7yc3j")
 
@@ -21,18 +32,23 @@ z_index = 1
 y_sort_enabled = true
 
 [node name="furball" parent="fur" unique_id=1955053531 instance=ExtResource("2_1lmpo")]
+z_index = 100
 position = Vector2(-34, -40)
 
 [node name="furball2" parent="fur" unique_id=556336390 instance=ExtResource("2_1lmpo")]
+z_index = 100
 position = Vector2(31, -39)
 
 [node name="furball3" parent="fur" unique_id=1065517382 instance=ExtResource("2_1lmpo")]
+z_index = 100
 position = Vector2(-52, 7)
 
 [node name="furball4" parent="fur" unique_id=1394950751 instance=ExtResource("2_1lmpo")]
+z_index = 100
 position = Vector2(0, 35)
 
 [node name="furball5" parent="fur" unique_id=996558735 instance=ExtResource("2_1lmpo")]
+z_index = 100
 position = Vector2(55, 9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1177976134]
