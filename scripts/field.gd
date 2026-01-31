@@ -30,7 +30,11 @@ var morning_started : bool = false
 
 var evening_started : bool = false
 
+var result_started : bool = false
+
 const SHEEP_SCENE = preload("uid://uhky4w4cihjo")
+
+var sheep_to_confirm = null
 
 ############ Function ###############
 
@@ -94,6 +98,58 @@ func align_animal_in_line():
 		# Ensure they stay still
 		animal.linear_velocity = Vector2.ZERO
 
+
+func show_selection_popup(selected):
+	sheep_to_confirm = selected
+	sheep_to_confirm.set_highlight(true) # Lock the glow
+	$PickPopup.popup_centered()
+
+func _on_popup_confirmed():
+	current_state = State.RESULT
+	print("Sheep chosen! Moving to Results.")
+	# You can add a fade_transition() here if you want
+	fade_to_result()
+
+func _on_popup_canceled():
+	if sheep_to_confirm:
+		sheep_to_confirm.set_highlight(false) # Turn off the glow
+		sheep_to_confirm = null
+
+func fade_to_result():
+	var fade = $CanvasLayer/ColorRect
+	var tween = create_tween()
+	
+	# 1. Fade to Black
+	tween.tween_property(fade, "modulate:a", 1.0, 0.5)
+	
+	# 2. Change state and update text while screen is black
+	tween.tween_callback(func(): 
+		current_state = State.RESULT
+		get_tree().call_group("animal_group", "hide")
+		show_result_text()
+	)
+	
+	# 3. Stay black briefly, then fade out
+	tween.tween_interval(1.0)
+	tween.tween_property(fade, "modulate:a", 0.0, 0.5)
+	
+func show_result_text():
+	# If you have a specific Label for results, use that. 
+	# Otherwise, we'll create a quick one.
+	var result_label = Label.new()
+	
+	# Get the name of the sheep node (e.g., "PhysicsShoop2")
+	var sheep_or_wolf = "sheep"
+	
+	result_label.text = "You chose: " + sheep_or_wolf
+	result_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	add_child(result_label)
+	result_label.z_index = 999
+	
+	# Center it on screen
+	result_label.position = Vector2(0, 0)
+	result_label.z_index = 1000
+
 ####################################
 
 # Called when the node enters the scene tree for the first time.
@@ -104,6 +160,9 @@ func _ready() -> void:
 	add_child(my_label)
 	my_label.position = Vector2(0, -270)
 	my_label.z_index = 999
+	
+	$PickPopup.confirmed.connect(_on_popup_confirmed)
+	$PickPopup.canceled.connect(_on_popup_canceled)
 	
 
 func spawn_multiple_rigidbodies(amount: int):
@@ -142,7 +201,8 @@ func _process(delta: float) -> void:
 			print("its now evening!")
 
 	elif current_state == State.RESULT:
-		pass
+		if not result_started:
+			result_started = true
 	
 	elif current_state == State.END:
 		pass

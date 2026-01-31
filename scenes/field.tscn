@@ -93,3 +93,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="PickPopup" type="ConfirmationDialog" parent="." unique_id=1115210086]
+title = "Selection"
+ok_button_text = "Yes"
+dialog_text = "Are you sure you want to pick this one?"
+cancel_button_text = "No"
