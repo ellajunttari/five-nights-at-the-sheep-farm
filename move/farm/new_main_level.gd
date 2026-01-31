@@ -64,6 +64,19 @@ func reduce_picks():
 #function to restart picks
 func restart_picks():
 	picks_left = 5
+	
+#Start the morning
+func start_morning():
+	deleteSheep(delete_this_many_sheep)
+	spawn_animal(SHEEP_SCENE, spawn_this_many_sheep)
+	spawn_animal(WOLF_SCENE, spawn_this_many_wolf)
+
+func start_evening():
+	current_state = State.EVENING
+	var my_label2 = Label.new()
+	my_label2.text = "Evening"
+	add_child(my_label2)
+	my_label2.position = Vector2(100, 50)
 
 #################################
 
@@ -75,24 +88,48 @@ func _ready() -> void:
 	add_child(my_label)
 	my_label.position = Vector2(50, 50)
 	
+	start_morning()
 	current_state = State.MORNING
+	
+	
+	
+	
+	
+	
+	# Create temporary debug button
+	var btn = Button.new()
+	btn.text = "NEXT PHASE"
+	btn.position = Vector2(50, 100) # Below your day label
+	add_child(btn)
+	
+	# Connect the click to a function
+	btn.pressed.connect(_on_debug_button_pressed)
+	
+func _on_debug_button_pressed():
+	if current_state == State.MORNING:
+		current_state = State.EVENING
+		start_evening()
+		print("Switched to Evening")
+	elif current_state == State.EVENING:
+		current_state = State.RESULT
+		print("Switched to Result")
+	elif current_state == State.RESULT:
+		current_state = State.MORNING
+		print("Switched to Morning")
+
+
+
+
+
 
 func _process(_delta):
 	match current_state:
 		State.MORNING:
-			#delete sheep
-			deleteSheep(delete_this_many_sheep)
-			
-			# spawn x sheep and x wolves
-			spawn_animal(SHEEP_SCENE, spawn_this_many_sheep)
-			spawn_animal(WOLF_SCENE, spawn_this_many_wolf)
-			
 			#When no more picks left, go to evening
-			if (picks_left == 0):
-				current_state = State.EVENING
+			if (picks_left <= 0):
+				start_evening()
 			
 		State.EVENING:
-			# Logic for evening
 			pass
 		State.RESULT:
 			# Show score screen
