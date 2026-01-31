@@ -10,3 +10,6 @@ script = ExtResource("1_rpg24")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=153641947]
 
 [node name="Timer" type="Timer" parent="." unique_id=724816521]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
