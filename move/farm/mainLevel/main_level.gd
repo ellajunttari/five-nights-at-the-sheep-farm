@@ -10,7 +10,12 @@ var spawn_this_many_sheep: int = 2
 var spawn_this_many_wolf: int = 2
 
 func _ready() -> void:
-	pass
+	# Show what day it is
+	
+	GameManager.time_toggled.connect(_on_time_changed)
+	
+	#yritän ymmärtää tätä JA
+	GameManager.day_changed.connect(_on_day_updated)
 
 func _on_time_changed(is_morning: bool):
 	# Map the boolean fact to a specific scene state
@@ -18,6 +23,12 @@ func _on_time_changed(is_morning: bool):
 		change_state(State.MORNING)
 	else:
 		change_state(State.EVENING)
+		
+#JA TÄTÄ
+func _on_day_updated(new_day: int):
+	# If the day changes, you might want to show a 'Day X' screen
+	change_state(State.RESULT)
+
 
 func change_state(new_state):
 	current_state = new_state
@@ -37,10 +48,10 @@ func change_state(new_state):
 			
 			# delete x sheep (can be 0-x)
 			
-			# Show what day it is
-			
 			# When all bags full (and something else) turn the day into evening
-			pass
+			#if():
+				#GameManager.toggle_time()
+			
 		State.EVENING:
 			# Show sheeps (and wolves) in a line
 			# Show show flashlight
@@ -52,6 +63,9 @@ func change_state(new_state):
 			# Show that did player find wolf or sheep
 			# if found wolf --> wolf.count + 1 --> somehow give to the morning 
 			# how many sheep and how many wolf to  
+			
+			#if (not dead):
+				#GameManager.next_day()
 			pass
 		State.END:
 			#Show the wolves having BBG + end

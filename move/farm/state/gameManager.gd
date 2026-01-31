@@ -6,8 +6,8 @@ const SCENE_PATHS: Dictionary = {
 }
 
 # Signals allow other nodes (like UI or NPCs) to react to changes
-signal day_changed(new_day)
-signal time_toggled(is_morning)
+signal day_changed(_current_day)
+signal time_toggled(_is_morning)
 signal FOUND_WOLF(wolf_count)
 signal MORE_SHEEPS(sheeps_in)
 signal MORE_WOLVES(wolves_in)
