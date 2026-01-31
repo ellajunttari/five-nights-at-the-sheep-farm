@@ -75,7 +75,7 @@ func spawn_multiple_rigidbodies(amount: int):
 		var random_pos = Vector2(randf_range(100, 500), randf_range(100, 300))
 		new_body.position = random_pos
 		new_body.z_index = 5
-		print("Spawned at: ", new_body.position)
+		
 		# 3. Add to the scene
 		add_child(new_body)
 
@@ -84,7 +84,6 @@ func _process(delta: float) -> void:
 	if current_state == State.MORNING:
 		# Use a check so this only runs ONCE
 		if not morning_started:
-			print("Logic reached: Spawning now!")
 			spawn_multiple_rigidbodies(3)
 			morning_started = true
 			
