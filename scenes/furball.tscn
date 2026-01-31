@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dpseh8jqketi5"]
+
+[ext_resource type="Script" uid="uid://rmdx5to33h5" path="res://scripts/furball.gd" id="1_xp8lq"]
+[ext_resource type="Texture2D" uid="uid://dmy4xis3pkcn5" path="res://assets/sprites/furball.png" id="2_bmtt7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7yc3j"]
+resource_local_to_scene = true
+
+[node name="furball" type="RigidBody2D" unique_id=1955053531]
+collision_layer = 4
+input_pickable = true
+gravity_scale = 0.0
+freeze = true
+script = ExtResource("1_xp8lq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=896560502]
+light_mask = 4
+visibility_layer = 4
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_bmtt7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=802580375]
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_7yc3j")

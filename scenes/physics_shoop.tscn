@@ -1,87 +1,40 @@
 [gd_scene format=3 uid="uid://uhky4w4cihjo"]
 
-[ext_resource type="Texture2D" uid="uid://dmy4xis3pkcn5" path="res://assets/sprites/furball.png" id="1_1lmpo"]
+[ext_resource type="PackedScene" uid="uid://dpseh8jqketi5" path="res://scenes/furball.tscn" id="2_1lmpo"]
 [ext_resource type="Texture2D" uid="uid://c4jefuvrh12jx" path="res://assets/sprites/shoop_base.png" id="2_7yc3j"]
-[ext_resource type="Script" uid="uid://rmdx5to33h5" path="res://scripts/furball.gd" id="2_amyth"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_7yc3j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1lmpo"]
 
 [node name="PhysicsShoop" type="RigidBody2D" unique_id=1177162672]
 z_index = 1
 position = Vector2(2, -2)
+collision_layer = 2
 gravity_scale = 0.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1554308123]
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_7yc3j")
 
 [node name="fur" type="Node2D" parent="." unique_id=1996397280]
+light_mask = 2
+z_index = 1
+y_sort_enabled = true
 
-[node name="furball" type="RigidBody2D" parent="fur" unique_id=1535525187]
-position = Vector2(-200, 140)
-collision_layer = 2
-collision_mask = 2
-gravity_scale = 0.0
-script = ExtResource("2_amyth")
+[node name="furball" parent="fur" unique_id=1955053531 instance=ExtResource("2_1lmpo")]
+position = Vector2(-54, -49)
 
-[node name="Sprite2D" type="Sprite2D" parent="fur/furball" unique_id=1749478828]
-texture = ExtResource("1_1lmpo")
+[node name="furball2" parent="fur" unique_id=556336390 instance=ExtResource("2_1lmpo")]
+position = Vector2(-6, -8)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fur/furball" unique_id=1376741483]
-shape = SubResource("CircleShape2D_7yc3j")
+[node name="furball3" parent="fur" unique_id=1065517382 instance=ExtResource("2_1lmpo")]
+position = Vector2(45, -48)
 
-[node name="furball2" type="RigidBody2D" parent="fur" unique_id=1776968798]
-position = Vector2(-200, -170)
-collision_layer = 4
-collision_mask = 4
-gravity_scale = 0.0
+[node name="furball4" parent="fur" unique_id=1394950751 instance=ExtResource("2_1lmpo")]
+position = Vector2(-46, 36)
 
-[node name="Sprite2D" type="Sprite2D" parent="fur/furball2" unique_id=1714934376]
-texture = ExtResource("1_1lmpo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fur/furball2" unique_id=1691608761]
-shape = SubResource("CircleShape2D_7yc3j")
-
-[node name="furball3" type="RigidBody2D" parent="fur" unique_id=772030125]
-collision_layer = 8
-collision_mask = 8
-gravity_scale = 0.0
-
-[node name="Sprite2D" type="Sprite2D" parent="fur/furball3" unique_id=1809470380]
-texture = ExtResource("1_1lmpo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fur/furball3" unique_id=1334469541]
-shape = SubResource("CircleShape2D_7yc3j")
-
-[node name="furball4" type="RigidBody2D" parent="fur" unique_id=196300439]
-position = Vector2(200, 148)
-collision_layer = 16
-collision_mask = 16
-input_pickable = true
-gravity_scale = 0.0
-script = ExtResource("2_amyth")
-
-[node name="Sprite2D" type="Sprite2D" parent="fur/furball4" unique_id=139401176]
-texture = ExtResource("1_1lmpo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fur/furball4" unique_id=473458702]
-position = Vector2(0, 1.9999999)
-scale = Vector2(20, 20)
-shape = SubResource("CircleShape2D_7yc3j")
-
-[node name="furball5" type="RigidBody2D" parent="fur" unique_id=1624401448]
-position = Vector2(200, -150)
-collision_layer = 32
-collision_mask = 32
-gravity_scale = 0.0
-
-[node name="Sprite2D" type="Sprite2D" parent="fur/furball5" unique_id=771062702]
-texture = ExtResource("1_1lmpo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fur/furball5" unique_id=1423988156]
-shape = SubResource("CircleShape2D_7yc3j")
+[node name="furball5" parent="fur" unique_id=996558735 instance=ExtResource("2_1lmpo")]
+position = Vector2(53, 30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1177976134]
-scale = Vector2(40, 40)
+scale = Vector2(10, 10)
 shape = SubResource("CircleShape2D_1lmpo")
