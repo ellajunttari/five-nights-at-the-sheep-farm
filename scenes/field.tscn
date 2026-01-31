@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://56l1t3n3xr0t" path="res://assets/Enviroready.png" id="3_7156t"]
 [ext_resource type="PackedScene" uid="uid://bvd8titndsf0a" path="res://scenes/basket.tscn" id="3_lptdg"]
 [ext_resource type="Script" uid="uid://vbkjiqyx62c0" path="res://scripts/basket.gd" id="4_7156t"]
+[ext_resource type="PackedScene" uid="uid://cfjxllyqccort" path="res://scenes/overlay.tscn" id="6_wnvii"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7156t"]
 size = Vector2(333.33337, 2103.3335)
@@ -77,3 +78,5 @@ script = ExtResource("4_7156t")
 [node name="Basket4" parent="." unique_id=1907130560 instance=ExtResource("3_lptdg")]
 position = Vector2(191, 237)
 script = ExtResource("4_7156t")
+
+[node name="overlay" parent="." unique_id=2069641102 instance=ExtResource("6_wnvii")]

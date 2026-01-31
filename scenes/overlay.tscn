@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cfjxllyqccort"]
+
+[ext_resource type="Texture2D" uid="uid://ddy3bp2qc8h5f" path="res://assets/sprites/boo.png" id="1_nv86q"]
+
+[node name="overlay" type="CanvasLayer" unique_id=2069641102]
+
+[node name="surprise" type="TextureRect" parent="." unique_id=198171868]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nv86q")
+expand_mode = 1
+stretch_mode = 6
