@@ -14,27 +14,6 @@ size = Vector2(3281.6665, 415.8334)
 [node name="Field" type="Node2D" unique_id=328235976]
 position = Vector2(-5, 10)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=149313852]
-layer = 0
-
-[node name="BasketAnchor" type="Control" parent="CanvasLayer" unique_id=876397817]
-layout_mode = 3
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_horizontal = 8
-size_flags_vertical = 8
-
-[node name="Basket" parent="CanvasLayer/BasketAnchor" unique_id=1409703975 instance=ExtResource("3_lptdg")]
-position = Vector2(-69, -86)
-script = ExtResource("4_7156t")
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=443372418]
 z_index = -10
 scale = Vector2(0.3, 0.3)
@@ -75,3 +54,7 @@ position = Vector2(-6.1035156e-05, -0.2492981)
 
 [node name="PhysicsShoop" parent="." unique_id=1177162672 instance=ExtResource("1_ttalb")]
 z_index = 100
+
+[node name="Basket" parent="." unique_id=1409703975 instance=ExtResource("3_lptdg")]
+position = Vector2(456, 202)
+script = ExtResource("4_7156t")
