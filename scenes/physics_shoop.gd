@@ -1,4 +1,5 @@
 extends RigidBody2D
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
 var speed : float = 90.0
 var move_direction = Vector2.ZERO
@@ -14,10 +15,20 @@ func _physics_process(_delta):
 		if global_position.distance_to(get_global_mouse_position()) < 200:
 			move_direction = (global_position - get_global_mouse_position()).normalized()
 			speed = 200.0
-		
+			
 		linear_velocity = move_direction * speed
+	
+		if linear_velocity.length() == 0:
+			if anim.animation != "idle":
+				anim.play("idle")
+	
+		else:
+			if anim.animation != "walk":
+				anim.play("walk")
 	else:
 		linear_velocity = Vector2.ZERO
+		if anim.animation != "idle":
+			anim.play("idle")
 
 # This function runs the moment the sheep hits a wall
 func _on_sheep_body_entered(body):
@@ -39,3 +50,4 @@ func _on_timer_timeout():
 func choose_new_direction():
 	speed = randf_range(60.0, 100.0)
 	move_direction = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized()
+	
