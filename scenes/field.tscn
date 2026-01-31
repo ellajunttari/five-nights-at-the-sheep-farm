@@ -1,13 +1,92 @@
 [gd_scene format=3 uid="uid://b0vbatf2qm5g4"]
 
 [ext_resource type="PackedScene" uid="uid://uhky4w4cihjo" path="res://scenes/physics_shoop.tscn" id="1_ttalb"]
+[ext_resource type="Texture2D" uid="uid://boe8lm037ha2r" path="res://assets/sprites/Furball_Legs/Walk.png" id="2_7156t"]
 [ext_resource type="Texture2D" uid="uid://ejfgcuxvawps" path="res://assets/green-grass-field-on-small-260nw-2550206247.jpg" id="2_lptdg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pn4dk"]
+atlas = ExtResource("2_7156t")
+region = Rect2(0, 0, 1021, 1012)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnvii"]
+atlas = ExtResource("2_7156t")
+region = Rect2(1021, 0, 1021, 1012)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcubs"]
+atlas = ExtResource("2_7156t")
+region = Rect2(2042, 0, 1021, 1012)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjqoj"]
+atlas = ExtResource("2_7156t")
+region = Rect2(3063, 0, 1021, 1012)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aaam2"]
+atlas = ExtResource("2_7156t")
+region = Rect2(4084, 0, 1021, 1012)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qjf2"]
+atlas = ExtResource("2_7156t")
+region = Rect2(5105, 0, 1021, 1012)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwwu5"]
+atlas = ExtResource("2_7156t")
+region = Rect2(6126, 0, 1021, 1012)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxpcs"]
+atlas = ExtResource("2_7156t")
+region = Rect2(7147, 0, 1021, 1012)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_35llp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7156t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pn4dk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnvii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcubs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjqoj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aaam2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qjf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwwu5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxpcs")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [node name="Field" type="Node2D" unique_id=328235976]
 position = Vector2(0, -72)
 scale = Vector2(1e-05, 1e-05)
 
 [node name="PhysicsShoop" parent="." unique_id=1177162672 instance=ExtResource("1_ttalb")]
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="PhysicsShoop" unique_id=619587224]
+position = Vector2(-2, 2.5)
+sprite_frames = SubResource("SpriteFrames_35llp")
+animation = &"walk"
+frame_progress = 0.5146895
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=909081019]
 position = Vector2(-6.1035156e-05, -0.2492981)
