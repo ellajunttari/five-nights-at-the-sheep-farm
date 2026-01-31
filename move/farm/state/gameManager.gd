@@ -1,5 +1,10 @@
 extends Node
 
+const SCENE_PATHS: Dictionary = {
+	"wolf" : "uid://cgxnugrgqgk3",
+	"sheep": "uid://ivi1rrcsyx26"
+}
+
 # Signals allow other nodes (like UI or NPCs) to react to changes
 signal day_changed(new_day)
 signal time_toggled(is_morning)
@@ -42,11 +47,6 @@ var wolves_in: int = 0:
 	set(value):
 		wolves_in += value
 		MORE_WOLVES.emit(wolves_in)
-
-
-# vie aamuun 
-		#how many villaa can be picked 
-		#var picks_left = 5
 
 func next_day():
 	_current_day += 1

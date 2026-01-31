@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ivi1rrcsyx26"]
 
-[ext_resource type="Script" uid="uid://5hmrslktyjiq" path="res://sheep.gd" id="1_0sl4e"]
+[ext_resource type="Script" uid="uid://5hmrslktyjiq" path="res://animals/sheep.gd" id="1_0sl4e"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1791055918]
 script = ExtResource("1_0sl4e")

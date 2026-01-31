@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cwo8uaua34d1"]
 
 [ext_resource type="Texture2D" uid="uid://cfksm0ovpc0b3" path="res://art/Untitled_Artwork.png" id="1_ihkle"]
-[ext_resource type="Script" uid="uid://suanfcppo3v6" path="res://lampaat.gd" id="1_qdglr"]
+[ext_resource type="Script" uid="uid://suanfcppo3v6" path="res://testing/lampaat.gd" id="1_qdglr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihkle"]
 size = Vector2(134, 88.375)
