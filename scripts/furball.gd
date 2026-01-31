@@ -7,6 +7,7 @@ func _ready():
 	# Ensure the wool doesn't fall off the sheep immediately
 	freeze = true
 	add_to_group("draggables")
+	print(get_node_or_null("/root/Global"))
 
 func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:

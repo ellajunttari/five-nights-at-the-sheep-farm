@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://uhky4w4cihjo" path="res://scenes/physics_shoop.tscn" id="1_ttalb"]
 [ext_resource type="Texture2D" uid="uid://56l1t3n3xr0t" path="res://assets/Enviroready.png" id="3_7156t"]
-[ext_resource type="PackedScene" uid="uid://bvd8titndsf0a" path="res://scenes/basket.tscn" id="3_lptdg"]
-[ext_resource type="Script" uid="uid://vbkjiqyx62c0" path="res://scripts/basket.gd" id="4_7156t"]
+[ext_resource type="PackedScene" path="res://scenes/basket.tscn" id="3_lptdg"]
+[ext_resource type="Script" uid="uid://vbkjiqyx62c0" path="res://scenes/basket.gd" id="4_7156t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7156t"]
 size = Vector2(333.33337, 2103.3335)
