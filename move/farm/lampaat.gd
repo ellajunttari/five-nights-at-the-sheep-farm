@@ -8,6 +8,8 @@ func _ready():
 	# Start the first move immediately
 	_on_timer_timeout()
 	#choose_new_direction()
+	
+	
 
 func _physics_process(delta):
 	

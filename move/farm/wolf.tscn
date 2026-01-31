@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cgxnugrgqgk3"]
+
+[ext_resource type="Script" uid="uid://b723l0thae46c" path="res://wolf.gd" id="1_fv4gx"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=495421099]
+script = ExtResource("1_fv4gx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=873378269]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=662788768]
+
+[node name="Timer" type="Timer" parent="." unique_id=899942714]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

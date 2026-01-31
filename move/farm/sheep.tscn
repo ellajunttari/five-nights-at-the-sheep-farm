@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ivi1rrcsyx26"]
+
+[ext_resource type="Script" uid="uid://5hmrslktyjiq" path="res://sheep.gd" id="1_0sl4e"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1791055918]
+script = ExtResource("1_0sl4e")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=620268170]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=262757745]
+
+[node name="Timer" type="Timer" parent="." unique_id=1724981710]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

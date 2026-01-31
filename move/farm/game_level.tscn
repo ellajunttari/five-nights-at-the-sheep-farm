@@ -10,3 +10,9 @@ script = SubResource("GDScript_bwyfi")
 
 [node name="CharacterBody2D" parent="." unique_id=1600128502 instance=ExtResource("2_df5pp")]
 position = Vector2(544, 294)
+
+[node name="CharacterBody2D2" parent="." unique_id=319791950 instance=ExtResource("2_df5pp")]
+position = Vector2(284, 338)
+
+[node name="CharacterBody2D3" parent="." unique_id=20097255 instance=ExtResource("2_df5pp")]
+position = Vector2(691, 417)
