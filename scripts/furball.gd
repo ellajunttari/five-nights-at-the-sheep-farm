@@ -12,11 +12,12 @@ func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			# Check BOTH if it's not held AND if it's allowed to be picked up
-			if not is_held and can_be_picked_up:
+			if not is_held and can_be_picked_up and not Global.is_mouse_busy:
 				pickup()
 
 func pickup():
 	if get_parent().name == "fur": 
+		Global.is_mouse_busy = true # Lock the mouse
 		is_held = true
 		freeze = true
 		z_index = 100
@@ -26,6 +27,7 @@ func drop():
 	is_held = false
 	freeze = false
 	z_index = 0
+	Global.is_mouse_busy = false
 	
 	# Disable future pick-ups
 	can_be_picked_up = false 
