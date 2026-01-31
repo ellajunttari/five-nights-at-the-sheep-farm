@@ -16,7 +16,7 @@ var sheeps_in : int = 0
 #how many wolves in aitaus
 var wolves_in: int = 0
 #how many sheep to spawn
-var spawn_this_many_sheep: int = 2
+var spawn_this_many_sheep: int = 8
 #How many wolves to spawn
 var spawn_this_many_wolf: int = 2
 #how many picks left aka how many sacks left
@@ -29,6 +29,7 @@ var delete_this_many_sheep = 0
 var morning_started : bool = false
 
 const SHEEP_SCENE = preload("uid://uhky4w4cihjo")
+const WOLF_SCENE = preload("uid://cvc21jfs86jl5")
 
 ############ Function ###############
 
@@ -66,10 +67,14 @@ func _ready() -> void:
 	morning_started = false
 	
 
-func spawn_multiple_rigidbodies(amount: int):
+func spawn_multiple_rigidbodies(amount: int, type: String):
 	for i in range(amount):
 		# 1. Create the instance
-		var new_body = SHEEP_SCENE.instantiate() 
+		var new_body
+		if type == "sheep":
+			new_body = SHEEP_SCENE.instantiate()
+		else:
+			new_body = WOLF_SCENE.instantiate()
 		
 		# 2. Set a random position (so they don't overlap and explode)
 		var random_pos = Vector2(randf_range(100, 500), randf_range(100, 300))
@@ -83,7 +88,8 @@ func _process(delta: float) -> void:
 	if current_state == State.MORNING:
 		# Use a check so this only runs ONCE
 		if not morning_started:
-			spawn_multiple_rigidbodies(3)
+			spawn_multiple_rigidbodies(spawn_this_many_sheep, "sheep")
+			spawn_multiple_rigidbodies(spawn_this_many_wolf, "wolf")
 			morning_started = true
 			
 		# Constant checking (like your picks)

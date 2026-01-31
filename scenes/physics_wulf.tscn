@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://uhky4w4cihjo"]
+[gd_scene format=3 uid="uid://cvc21jfs86jl5"]
 
-[ext_resource type="Script" uid="uid://7xcfsrlemw4w" path="res://scripts/physics_shoop.gd" id="1_7yc3j"]
-[ext_resource type="PackedScene" uid="uid://dpseh8jqketi5" path="res://scenes/furball.tscn" id="2_1lmpo"]
-[ext_resource type="Texture2D" uid="uid://c4jefuvrh12jx" path="res://assets/sprites/shoop_base.png" id="2_7yc3j"]
+[ext_resource type="Script" uid="uid://dy5ybqiy0puxr" path="res://scripts/physics_wulf.gd" id="1_femq2"]
+[ext_resource type="Texture2D" uid="uid://c4jefuvrh12jx" path="res://assets/sprites/shoop_base.png" id="2_p1kx7"]
+[ext_resource type="PackedScene" uid="uid://dpseh8jqketi5" path="res://scenes/furball.tscn" id="3_dewih"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7yc3j"]
 friction = 0.09
@@ -20,35 +20,35 @@ can_sleep = false
 freeze_mode = 1
 contact_monitor = true
 max_contacts_reported = 1
-script = ExtResource("1_7yc3j")
+script = ExtResource("1_femq2")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1554308123]
 z_index = 90
 scale = Vector2(0.15, 0.15)
-texture = ExtResource("2_7yc3j")
+texture = ExtResource("2_p1kx7")
 
 [node name="fur" type="Node2D" parent="." unique_id=1996397280]
 light_mask = 2
 z_index = 1
 y_sort_enabled = true
 
-[node name="furball" parent="fur" unique_id=1955053531 instance=ExtResource("2_1lmpo")]
+[node name="furball" parent="fur" unique_id=1955053531 instance=ExtResource("3_dewih")]
 z_index = 100
 position = Vector2(-29, -34)
 
-[node name="furball2" parent="fur" unique_id=556336390 instance=ExtResource("2_1lmpo")]
+[node name="furball2" parent="fur" unique_id=556336390 instance=ExtResource("3_dewih")]
 z_index = 100
 position = Vector2(35, -32)
 
-[node name="furball3" parent="fur" unique_id=1065517382 instance=ExtResource("2_1lmpo")]
+[node name="furball3" parent="fur" unique_id=1065517382 instance=ExtResource("3_dewih")]
 z_index = 100
 position = Vector2(-45, 11)
 
-[node name="furball4" parent="fur" unique_id=1394950751 instance=ExtResource("2_1lmpo")]
+[node name="furball4" parent="fur" unique_id=1394950751 instance=ExtResource("3_dewih")]
 z_index = 100
 position = Vector2(4, 32)
 
-[node name="furball5" parent="fur" unique_id=996558735 instance=ExtResource("2_1lmpo")]
+[node name="furball5" parent="fur" unique_id=996558735 instance=ExtResource("3_dewih")]
 z_index = 100
 position = Vector2(50, 14)
 
