@@ -28,6 +28,8 @@ var delete_this_many_sheep = 0
 #Has morning started
 var morning_started : bool = false
 
+var evening_started : bool = false
+
 const SHEEP_SCENE = preload("uid://uhky4w4cihjo")
 
 ############ Function ###############
@@ -61,15 +63,15 @@ func _ready() -> void:
 	var my_label = Label.new()
 	my_label.text = "Day " + str(_current_day)
 	add_child(my_label)
-	my_label.position = Vector2(50, 50)
+	my_label.position = Vector2(0, -270)
 	my_label.z_index = 999
-	morning_started = false
 	
 
 func spawn_multiple_rigidbodies(amount: int):
 	for i in range(amount):
 		# 1. Create the instance
 		var new_body = SHEEP_SCENE.instantiate() 
+		new_body.add_to_group("animal_group")
 		
 		# 2. Set a random position (so they don't overlap and explode)
 		var random_pos = Vector2(randf_range(100, 500), randf_range(100, 300))
@@ -88,13 +90,16 @@ func _process(delta: float) -> void:
 			morning_started = true
 			
 		# Constant checking (like your picks)
-		if picks_left == 0:
+		if Global.picks_left == -1:
+			print("We are ready to go evening")
 			current_state = State.EVENING
 			morning_started = false # Reset the flag for tomorrow
+			get_tree().call_group("animal_group", "set", "freeze", true)
 	
 	elif current_state == State.EVENING:
-		# Evening logic
-		pass
+		if not evening_started:
+			evening_started = true
+			print("its now evening!")
 
 	elif current_state == State.RESULT:
 		pass

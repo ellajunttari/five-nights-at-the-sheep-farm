@@ -18,6 +18,7 @@ func _physics_process(_delta):
 		linear_velocity = move_direction * speed
 	else:
 		linear_velocity = Vector2.ZERO
+		return
 
 # This function runs the moment the sheep hits a wall
 func _on_sheep_body_entered(body):

@@ -4,3 +4,4 @@ res://scripts/Global.gd
 res://scripts/furball.gd
 res://scenes/physics_shoop.tscn
 res://scripts/physics_shoop.gd
+res://game_logic.gd
