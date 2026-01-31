@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://uhky4w4cihjo" path="res://scenes/physics_shoop.tscn" id="1_ttalb"]
 [ext_resource type="Texture2D" uid="uid://jdytdt0seicp" path="res://assets/env in progress.png" id="2_ttalb"]
+[ext_resource type="PackedScene" uid="uid://bvd8titndsf0a" path="res://scenes/basket.tscn" id="3_lptdg"]
+[ext_resource type="Script" uid="uid://vbkjiqyx62c0" path="res://scenes/basket.gd" id="4_7156t"]
 
 [node name="Field" type="Node2D" unique_id=328235976]
 position = Vector2(0, -72)
@@ -25,3 +27,21 @@ grow_vertical = 2
 texture = ExtResource("2_ttalb")
 expand_mode = 1
 stretch_mode = 6
+
+[node name="BasketAnchor" type="Control" parent="CanvasLayer" unique_id=876397817]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Basket" parent="CanvasLayer/BasketAnchor" unique_id=1409703975 instance=ExtResource("3_lptdg")]
+position = Vector2(-50, -50)
+script = ExtResource("4_7156t")
