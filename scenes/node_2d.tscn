@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dljh15mx6fvjt"]
+
+[ext_resource type="Texture2D" uid="uid://c4jefuvrh12jx" path="res://assets/sprites/shoop_base.png" id="1_6e84v"]
+[ext_resource type="Texture2D" uid="uid://dmy4xis3pkcn5" path="res://assets/sprites/furball.png" id="2_4dvvg"]
+
+[node name="Node2D" type="RigidBody2D" unique_id=367610664]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1356142399]
+texture = ExtResource("1_6e84v")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1554411703]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=92640771]
+texture = ExtResource("2_4dvvg")

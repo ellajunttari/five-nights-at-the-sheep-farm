@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b0vbatf2qm5g4"]
+
+[ext_resource type="PackedScene" uid="uid://uhky4w4cihjo" path="res://scenes/physics_shoop.tscn" id="1_ttalb"]
+[ext_resource type="Texture2D" uid="uid://ejfgcuxvawps" path="res://assets/green-grass-field-on-small-260nw-2550206247.jpg" id="2_lptdg"]
+
+[node name="Field" type="Node2D" unique_id=328235976]
+position = Vector2(0, -72)
+scale = Vector2(1e-05, 1e-05)
+
+[node name="PhysicsShoop" parent="." unique_id=1177162672 instance=ExtResource("1_ttalb")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=909081019]
+position = Vector2(-6.1035156e-05, -0.2492981)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=149313852]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1524633808]
+z_index = -10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lptdg")
+expand_mode = 1
+stretch_mode = 6
