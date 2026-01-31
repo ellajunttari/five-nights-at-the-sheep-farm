@@ -17,7 +17,7 @@ script = ExtResource("1_xp8lq")
 light_mask = 4
 visibility_layer = 4
 z_index = 100
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_bmtt7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=802580375]
