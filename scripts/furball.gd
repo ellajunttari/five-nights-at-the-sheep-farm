@@ -32,7 +32,7 @@ func drop():
 	freeze = false
 	
 	# 1. Reset visual depth
-	z_index = 0
+	z_index = 10
 	
 	# 2. Optional: Give it a tiny push so it doesn't just hang there
 	apply_impulse(Vector2.ZERO)
