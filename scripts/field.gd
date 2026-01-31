@@ -25,6 +25,10 @@ var picks_left = Global.picks_left
 var current_state = State.MORNING
 #How many sheep to delete
 var delete_this_many_sheep = 0
+#Has morning started
+var morning_started : bool = false
+
+const SHEEP_SCENE = preload("uid://uhky4w4cihjo")
 
 ############ Function ###############
 
@@ -59,9 +63,42 @@ func _ready() -> void:
 	add_child(my_label)
 	my_label.position = Vector2(50, 50)
 	my_label.z_index = 999
-	pass
+	morning_started = false
+	
 
+func spawn_multiple_rigidbodies(amount: int):
+	for i in range(amount):
+		# 1. Create the instance
+		var new_body = SHEEP_SCENE.instantiate() 
+		
+		# 2. Set a random position (so they don't overlap and explode)
+		var random_pos = Vector2(randf_range(100, 500), randf_range(100, 300))
+		new_body.position = random_pos
+		new_body.z_index = 5
+		print("Spawned at: ", new_body.position)
+		# 3. Add to the scene
+		add_child(new_body)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if current_state == State.MORNING:
+		# Use a check so this only runs ONCE
+		if not morning_started:
+			print("Logic reached: Spawning now!")
+			spawn_multiple_rigidbodies(3)
+			morning_started = true
+			
+		# Constant checking (like your picks)
+		if picks_left == 0:
+			current_state = State.EVENING
+			morning_started = false # Reset the flag for tomorrow
+	
+	elif current_state == State.EVENING:
+		# Evening logic
+		pass
+
+	elif current_state == State.RESULT:
+		pass
+	
+	elif current_state == State.END:
+		pass
