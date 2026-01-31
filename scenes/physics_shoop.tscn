@@ -102,6 +102,7 @@ scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_7yc3j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D" unique_id=889317180]
+show_behind_parent = true
 sprite_frames = SubResource("SpriteFrames_noyt7")
 animation = &"walk"
 autoplay = "walk"

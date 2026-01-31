@@ -33,6 +33,7 @@ func pick_sprite():
 			var random_index = randi() % files.size()
 			var final_path = folder_path + files[random_index]
 			sprite.texture = load(final_path)
+			sprite.z_index = 50
 		else:
 			print("No png files found in " + folder_path)
 	else:
