@@ -77,3 +77,19 @@ script = ExtResource("4_7156t")
 [node name="Basket4" parent="." unique_id=1907130560 instance=ExtResource("3_lptdg")]
 position = Vector2(191, 237)
 script = ExtResource("4_7156t")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1302277530]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=32687021]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -6.0
+offset_right = 288.0
+offset_bottom = 143.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

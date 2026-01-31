@@ -54,6 +54,21 @@ func reduce_picks():
 #function to restart picks
 func restart_picks():
 	picks_left = 5
+	
+func fade_transition():
+	var fade = $CanvasLayer/ColorRect # Make sure the path matches your scene
+	
+	# Fade to Black
+	var tween = create_tween()
+	tween.tween_property(fade, "modulate:a", 1.0, 1.5) # 0.5 seconds
+	
+	# Wait at black, then change state
+	tween.tween_callback(func(): current_state = State.EVENING)
+	
+	tween.tween_interval(2.0)
+	
+	# Fade back to Transparent
+	tween.tween_property(fade, "modulate:a", 0.0, 1.5)
 
 ####################################
 
@@ -95,6 +110,7 @@ func _process(delta: float) -> void:
 			current_state = State.EVENING
 			morning_started = false # Reset the flag for tomorrow
 			get_tree().call_group("animal_group", "set", "freeze", true)
+			fade_transition()
 	
 	elif current_state == State.EVENING:
 		if not evening_started:
