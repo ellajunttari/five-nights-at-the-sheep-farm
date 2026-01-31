@@ -12,7 +12,7 @@ collision_layer = 2
 gravity_scale = 0.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1554308123]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_7yc3j")
 
 [node name="fur" type="Node2D" parent="." unique_id=1996397280]
@@ -21,20 +21,20 @@ z_index = 1
 y_sort_enabled = true
 
 [node name="furball" parent="fur" unique_id=1955053531 instance=ExtResource("2_1lmpo")]
-position = Vector2(-54, -49)
+position = Vector2(-34, -40)
 
 [node name="furball2" parent="fur" unique_id=556336390 instance=ExtResource("2_1lmpo")]
-position = Vector2(-6, -8)
+position = Vector2(31, -39)
 
 [node name="furball3" parent="fur" unique_id=1065517382 instance=ExtResource("2_1lmpo")]
-position = Vector2(45, -48)
+position = Vector2(-52, 7)
 
 [node name="furball4" parent="fur" unique_id=1394950751 instance=ExtResource("2_1lmpo")]
-position = Vector2(-46, 36)
+position = Vector2(0, 35)
 
 [node name="furball5" parent="fur" unique_id=996558735 instance=ExtResource("2_1lmpo")]
-position = Vector2(53, 30)
+position = Vector2(55, 9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1177976134]
-scale = Vector2(10, 10)
+scale = Vector2(6, 6)
 shape = SubResource("CircleShape2D_1lmpo")

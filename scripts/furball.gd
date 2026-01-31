@@ -3,36 +3,47 @@ extends RigidBody2D
 var is_held = false
 
 func _ready():
-	# Add this object to a group so the Side Object can find it later
+	# Ensure the wool doesn't fall off the sheep immediately
+	freeze = true
 	add_to_group("draggables")
 
-func _input_event(viewport, event, shape_idx):
-	# Detect click on the Wool to Pick it up
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if not is_held:
-			pickup()
+func _input_event(_viewport, event, _shape_idx):
+	# Check for a left mouse button click
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		# We only trigger on the "pressed" state to avoid double-triggering on release
+		if event.pressed:
+			if not is_held:
+				pickup()
+			else:
+				# If you want to be able to drop it anywhere by clicking it again
+				drop()
 
 func pickup():
 	is_held = true
-	freeze = true # Disable physics so we can move it manually
+	freeze = true
 	
-	# Detach from Sheep (reparent to root) so it moves freely
+	# 1. Bring to front visually
+	z_index = 100
+	
+	# 2. Detach from sheep so it doesn't move with the sheep anymore
 	if get_parent() != get_tree().current_scene:
+		# We use reparent so it keeps its global position during the move
 		call_deferred("reparent", get_tree().current_scene)
-
-# This function will be called remotely by the Side Object
-func attempt_drop():
-	if is_held:
-		drop()
 
 func drop():
 	is_held = false
-	freeze = false # Re-enable physics (gravity/collision)
+	freeze = false
 	
-	# Optional: Reset velocity if you want it to drop straight down
-	linear_velocity = Vector2.ZERO
+	# 1. Reset visual depth
+	z_index = 0
+	
+	# 2. Optional: Give it a tiny push so it doesn't just hang there
+	apply_impulse(Vector2.ZERO)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if is_held:
-		# Smoothly follow the mouse
+		# The ball follows the mouse perfectly
 		global_position = get_global_mouse_position()
+		
+		# Reset velocity so it doesn't build up "gravity speed" while held
+		linear_velocity = Vector2.ZERO
