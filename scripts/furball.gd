@@ -20,12 +20,20 @@ func _input_event(_viewport, event, _shape_idx):
 func pickup():
 	if get_parent().name == "fur": 
 		Global.is_mouse_busy = true # Lock the mouse
+		var fur = get_parent()
+		var wolf = fur.get_parent()
+		wolf.picked_fur += 1
+		if wolf.picked_fur == 5:
+			surprise()
 		is_held = true
 		freeze = true
 		z_index = 100
 		reparent.call_deferred(get_tree().current_scene)
 		#reduce the global variable picks_left if its not 0
 		if(Global.picks_left > 0): Global.picks_left -= 1
+		
+func surprise():
+	print("surprise")
 
 func drop():
 	is_held = false

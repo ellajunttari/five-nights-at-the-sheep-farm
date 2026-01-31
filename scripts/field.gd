@@ -16,7 +16,7 @@ var sheeps_in : int = 0
 #how many wolves in aitaus
 var wolves_in: int = 0
 #how many sheep to spawn
-var spawn_this_many_sheep: int = 8
+var spawn_this_many_sheep: int = 0
 #How many wolves to spawn
 var spawn_this_many_wolf: int = 2
 #how many picks left aka how many sacks left

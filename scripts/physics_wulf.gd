@@ -3,6 +3,7 @@ extends RigidBody2D
 var speed : float = 90.0
 var move_direction = Vector2.ZERO
 var folder_path = "res://assets/sprites/Wolf/"
+var picked_fur = 0
 
 # Get a reference to the Sprite2D child node
 @onready var sprite: Sprite2D = $Sprite2D 
@@ -37,10 +38,6 @@ func pick_sprite():
 			print("No png files found in " + folder_path)
 	else:
 		print("An error occurred when trying to access the path.")
-
-#func set_sheep_appearance(new_texture: Texture2D):
-#	# 'sprite' is now a reference you can use anywhere in this script
-#	sprite.texture = new_texture
 
 func _physics_process(_delta):
 	if not freeze:
