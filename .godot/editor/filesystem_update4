@@ -1,0 +1,4 @@
+res://scenes/field.tscn
+res://scripts/field.gd
+res://scripts/Global.gd
+res://scripts/furball.gd

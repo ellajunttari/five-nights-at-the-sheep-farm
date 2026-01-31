@@ -13,7 +13,9 @@ func _input_event(_viewport, event, _shape_idx):
 		if event.pressed:
 			# Check BOTH if it's not held AND if it's allowed to be picked up
 			if not is_held and can_be_picked_up and not Global.is_mouse_busy:
-				pickup()
+				#Checks if player is able to pickup the furball
+				if Global.picks_left > 0: 
+					pickup()
 
 func pickup():
 	if get_parent().name == "fur": 
@@ -22,6 +24,8 @@ func pickup():
 		freeze = true
 		z_index = 100
 		reparent.call_deferred(get_tree().current_scene)
+		#reduce the global variable picks_left if its not 0
+		if(Global.picks_left > 0): Global.picks_left -= 1
 
 func drop():
 	is_held = false
