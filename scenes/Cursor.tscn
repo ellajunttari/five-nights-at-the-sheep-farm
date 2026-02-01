@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://r2e15382x4tc" path="res://assets/sounds/shears.wav" id="4_7q1fa"]
 
 [sub_resource type="Animation" id="Animation_3evkt"]
-length = 0.001
+length = 0.13
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -14,7 +14,7 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(-0.011628397),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
@@ -26,8 +26,8 @@ tracks/1/path = NodePath(".:position:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.005, 0, 0.005, 0),
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(45, -0.005, 0, 0.005, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/2/type = "bezier"
@@ -37,8 +37,8 @@ tracks/2/path = NodePath(".:position:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.005, 0, 0.005, 0),
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(45, -0.005, 0, 0.005, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/3/type = "bezier"
@@ -84,7 +84,19 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2i(2, 0)]
+"values": [Vector2i(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_7q1fa"]
@@ -103,6 +115,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(2, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7q1fa"]
 _data = {
@@ -120,7 +144,6 @@ script = ExtResource("2_dg1fc")
 [node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=1077584223]
 texture = ExtResource("1_dg1fc")
 hframes = 3
-frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/Sprite2D" unique_id=296555374]
 libraries/ = SubResource("AnimationLibrary_7q1fa")
