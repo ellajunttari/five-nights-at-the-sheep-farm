@@ -1,6 +1,6 @@
-extends Sprite2D
+extends Node2D
 
-@onready var reset_timer: Timer = Timer.new()
+@onready var anim_player: AnimationPlayer = $Sprite2D/AnimationPlayer
 
 
 func _enter_tree() -> void:
@@ -9,13 +9,6 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-
-	reset_timer.one_shot = true
-	reset_timer.wait_time = 0.10
-	reset_timer.timeout.connect(_on_reset_timer_timeout)
-	add_child(reset_timer)
-
-	frame_coords = Vector2i(0, 0)
 
 
 func _process(_delta: float) -> void:
@@ -36,9 +29,4 @@ func _input(event) -> void:
 	and event.button_index == MOUSE_BUTTON_LEFT \
 	and event.pressed:
 
-		frame_coords = Vector2i(1, frame_coords.y)
-		reset_timer.start()
-
-
-func _on_reset_timer_timeout() -> void:
-	frame_coords = Vector2i(0, frame_coords.y)
+		anim_player.play("ClickingShears")
