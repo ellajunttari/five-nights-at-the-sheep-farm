@@ -352,6 +352,7 @@ func _process(delta: float) -> void:
 			spawn_multiple_rigidbodies(spawn_this_many_sheep, "sheep")
 			spawn_multiple_rigidbodies(spawn_this_many_wolf, "wolf")
 			morning_started = true
+			Global.Shears_Cursor = true
 			
 		# Constant checking (like your picks)
 		if Global.picks_left == -1:
@@ -364,6 +365,7 @@ func _process(delta: float) -> void:
 	elif current_state == State.EVENING:
 		if not evening_started:
 			evening_started = true
+			Global.Shears_Cursor = false
 
 	elif current_state == State.RESULT:
 		if not result_started:
