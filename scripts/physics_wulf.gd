@@ -4,9 +4,44 @@ var speed : float = 90.0
 var move_direction = Vector2.ZERO
 var folder_path = "res://assets/sprites/Wolf/"
 var picked_fur = 0
+var animal_type = "wolf"
 
 # Get a reference to the Sprite2D child node
 @onready var sprite: Sprite2D = $Sprite2D 
+
+#### Minttu Added #############
+
+# Code for picking up the one sheep
+var is_selected = false
+
+func _input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		var field = get_parent()
+		if field.current_state == field.State.EVENING:
+			field.show_selection_popup(self) # Tell the field we were clicked
+
+func set_highlight(active: bool):
+	is_selected = active
+	var target_scale = Vector2(1.2, 1.2) if active else Vector2(1.0, 1.0)
+	var target_color = Color(1.2, 1.2, 1.2) if active else Color(1, 1, 1)
+	
+	var tween = create_tween().set_parallel(true)
+	tween.tween_property(self, "scale", target_scale, 0.1)
+	tween.tween_property(self, "modulate", target_color, 0.1)
+
+func _on_mouse_entered():
+	var field = get_parent()
+	# Check if we are in evening state before glowing
+	if field.current_state == field.State.EVENING:
+		# We use your existing set_highlight logic
+		set_highlight(true)
+
+func _on_mouse_exited():
+	# Only turn off highlight if this animal isn't the one currently selected
+	var field = get_parent()
+	if field.sheep_to_confirm != self:
+		set_highlight(false)
+##################
 
 func _ready():
 	pick_sprite()
@@ -16,6 +51,11 @@ func _ready():
 	# Connect the collision signal to ourselves
 	body_entered.connect(_on_sheep_body_entered)
 	_on_timer_timeout()
+	
+	###Minttu Added ########
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
+	#####################
 	
 func pick_sprite():
 	var dir = DirAccess.open(folder_path)

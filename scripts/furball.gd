@@ -21,10 +21,14 @@ func pickup():
 	if get_parent().name == "fur": 
 		Global.is_mouse_busy = true # Lock the mouse
 		var fur = get_parent()
-		var wolf = fur.get_parent()
-		wolf.picked_fur += 1
-		if wolf.picked_fur == 5:
-			surprise()
+		var animal = fur.get_parent()
+		if animal.animal_type == "wolf":
+			print("PhysicsWulf")
+			animal.picked_fur += 1
+			if animal.picked_fur == 5:
+				surprise()
+		else:
+			pass
 		is_held = true
 		freeze = true
 		z_index = 100
@@ -33,9 +37,28 @@ func pickup():
 		if(Global.picks_left > 0): Global.picks_left -= 1
 		
 func surprise():
-	var overlay_node = get_tree().current_scene.find_child("overlay", true, false)
-	overlay_node.get_node("surprise").visible = true
 	print("surprise")
+	var overlay_node = get_tree().current_scene.find_child("overlay", true, false)
+	var surprise_node = overlay_node.get_node("surprise")
+	surprise_node.visible = true
+	var background_music = get_tree().current_scene.find_child("BackgroundMusic", true, false)
+	background_music.stop()
+	var surprise_music = get_tree().current_scene.find_child("SurpriseMusic", true, false)
+	surprise_music.play()
+	print("surprise")
+	
+	var shake_intensity = 20.0
+	var tween = create_tween()
+	
+	for i in range(10):
+		# We create a random direction
+		var random_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)) * shake_intensity
+		
+		# 1. Move AWAY from the center (relative to current position)
+		tween.tween_property(surprise_node, "position", random_direction, 0.01).as_relative()
+		
+		# 2. Move BACK to the center (the exact opposite move)
+		tween.tween_property(surprise_node, "position", -random_direction, 0.01).as_relative()
 
 func drop():
 	is_held = false
@@ -48,6 +71,8 @@ func drop():
 	
 	# Optional: Remove from the group so it's no longer "draggable"
 	remove_from_group("draggables")
+	if Global.picks_left <= 0:
+		Global.picks_left = -1
 
 func _physics_process(_delta):
 	if is_held:

@@ -61,7 +61,7 @@ visible = false
 z_index = 100
 
 [node name="Basket3" parent="." unique_id=1409703975 instance=ExtResource("3_lptdg")]
-position = Vector2(6, 237)
+position = Vector2(7, 235)
 script = ExtResource("4_7156t")
 
 [node name="Basket1" parent="." unique_id=1150987232 instance=ExtResource("3_lptdg")]
@@ -77,9 +77,28 @@ position = Vector2(-183, 237)
 script = ExtResource("4_7156t")
 
 [node name="Basket4" parent="." unique_id=1907130560 instance=ExtResource("3_lptdg")]
-position = Vector2(191, 237)
+position = Vector2(189, 231)
 script = ExtResource("4_7156t")
 
 [node name="overlay" parent="." unique_id=2069641102 instance=ExtResource("6_wnvii")]
 
-[node name="Sprite2D2" parent="." unique_id=1077584223 instance=ExtResource("7_tcubs")]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=181697492]
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1658406855]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1556285264]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="PickPopup" type="ConfirmationDialog" parent="." unique_id=537316618]
+title = "Selection"
+ok_button_text = "Yes"
+dialog_text = "Are you sure you want to pick this one?"
+cancel_button_text = "No"
