@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bvd8titndsf0a" path="res://scenes/basket.tscn" id="3_lptdg"]
 [ext_resource type="Script" uid="uid://vbkjiqyx62c0" path="res://scripts/basket.gd" id="4_7156t"]
 [ext_resource type="PackedScene" uid="uid://cfjxllyqccort" path="res://scenes/overlay.tscn" id="6_wnvii"]
-[ext_resource type="AudioStream" uid="uid://cy32veqq5vvo1" path="res://assets/audio/bg-loops/daytime-music-loop.wav" id="7_mwwu5"]
 [ext_resource type="PackedScene" uid="uid://dop1wj3gydtai" path="res://scenes/bad_sheep.tscn" id="8_vjqoj"]
 [ext_resource type="AudioStream" uid="uid://petu64lifg0u" path="res://assets/sounds/fluff-to-sack_pop.wav" id="9_aaam2"]
 [ext_resource type="AudioStream" uid="uid://dmabk24x3v27" path="res://assets/sounds/shot_sheep.wav" id="10_5qjf2"]
@@ -14,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://ci1av5hp5jl6j" path="res://assets/sounds/shot_wolf.wav" id="12_kxpcs"]
 [ext_resource type="PackedScene" uid="uid://dp1csj6t0cykw" path="res://scenes/bad_wolf.tscn" id="13_35llp"]
 [ext_resource type="PackedScene" uid="uid://d1rypky5xlj0h" path="res://scenes/Cursor.tscn" id="14_7bjmq"]
+[ext_resource type="PackedScene" uid="uid://jga7s70as2ne" path="res://assets/audio/daytime_bg_music.tscn" id="14_bsxxv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7156t"]
 size = Vector2(333.33337, 2103.3335)
@@ -89,10 +89,6 @@ script = ExtResource("4_7156t")
 
 [node name="overlay" parent="." unique_id=2069641102 instance=ExtResource("6_wnvii")]
 
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=181697492]
-stream = ExtResource("7_mwwu5")
-autoplay = true
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1658406855]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1556285264]
@@ -133,3 +129,5 @@ stream = ExtResource("12_kxpcs")
 [node name="bad_wolf" parent="." unique_id=1807362297 instance=ExtResource("13_35llp")]
 
 [node name="Cursor" parent="." unique_id=1849569036 instance=ExtResource("14_7bjmq")]
+
+[node name="BackgroundMusic" parent="." unique_id=1182233273 instance=ExtResource("14_bsxxv")]
