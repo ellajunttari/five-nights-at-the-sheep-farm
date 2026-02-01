@@ -253,12 +253,17 @@ func show_end_screen():
 		overlay_node.get_node("bad_sheep_img").visible = false
 	if overlay_node2:
 		overlay_node2.get_node("bad_wolf_img").visible = false
+	var bbq_node = get_tree().current_scene.find_child("bbq", true, false)
+	if bbq_node:
+		bbq_node.get_node("bbq_img").visible = true
 	var end_label = Label.new()
 	end_label.text = "GAME OVER\nThe wolves outnumbered the sheep!"
 	end_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	add_child(end_label)
-	end_label.position = Vector2(-100, 50) # Adjust to your screen center
+	bbq_node.add_child(end_label)
+	end_label.position = Vector2(500, 50) # Adjust to your screen center
 	end_label.z_index = 1000
+	var bbq_sound = get_tree().current_scene.find_child("bbq_music", true, false)
+	bbq_sound.play()
 
 func fade_to_next_day():
 	# Hide the bad sheep overlay if it was shown

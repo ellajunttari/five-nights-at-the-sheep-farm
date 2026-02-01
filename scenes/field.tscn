@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" path="res://assets/audio/daytime_bg_music.tscn" id="14_bsxxv"]
 [ext_resource type="AudioStream" uid="uid://c8f37l6nll1ls" path="res://assets/audio/sheep_fanfare/sheep_fanfare_2.wav" id="15_b7dnn"]
 [ext_resource type="AudioStream" uid="uid://dqjftih3g2y2l" path="res://assets/audio/wolf_unedited/wolf_howl_2.wav" id="16_r157f"]
+[ext_resource type="PackedScene" uid="uid://crkcilhx0qftc" path="res://scenes/bbq.tscn" id="17_r157f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7156t"]
 size = Vector2(333.33337, 2103.3335)
@@ -138,3 +139,5 @@ stream = ExtResource("15_b7dnn")
 
 [node name="DayFailSFX" type="AudioStreamPlayer" parent="." unique_id=543334061]
 stream = ExtResource("16_r157f")
+
+[node name="bbq" parent="." unique_id=445436499 instance=ExtResource("17_r157f")]
