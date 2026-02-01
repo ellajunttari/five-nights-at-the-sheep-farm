@@ -114,7 +114,7 @@ func align_animal_in_line():
 		# Move them instantly
 		animal.global_position = target_pos
 		# Ensure they stay still
-		animal.linear_velocity = Vector2.ZERO
+		animal.is_aligned = true
 
 
 func show_selection_popup(selected):
@@ -130,21 +130,34 @@ func remove_sheep_from_field(amount: int):
 		if removed_count >= amount:
 			break # Stop once we've deleted enough
 		
-		# Check if it's a sheep (ensure this matches your sheep script variable)
-		if "sheep" in animal.folder_path: 
+		if animal.animal_type == "sheep": 
+			print("Deleting sheep")
+			# 1. KILL the node (happens at end of frame)
 			animal.queue_free()
+			
+			# 2. DISCONNECT the node (happens INSTANTLY)
+			animal.remove_from_group("animal_group")
+			
 			removed_count += 1
+		else:
+			print("Not deleting wolf")
 
 func _on_popup_confirmed():
 	# Store the result BEFORE deleting the node
 	was_wolf_chosen = "Wolf" in sheep_to_confirm.folder_path
 	if was_wolf_chosen:
+		print("Wolf chosen")
 		# WOLF PATH: Player caught a wolf!
 		wolf_count += 1
 		spawn_this_many_wolf = 1
+		spawn_this_many_sheep = 0
+		print(wolf_count)
 	else:
 		# SHEEP PATH: Player accidentally picked a sheep
+		print("Sheep chosen")
 		spawn_this_many_wolf = 1
+		spawn_this_many_sheep = 0
+		#2
 		remove_sheep_from_field(wolves_in)
 	# Delete it now that we've saved the data we need
 	sheep_to_confirm.queue_free()
@@ -166,7 +179,7 @@ func fade_to_result():
 	# 2. Change state and update text while screen is black
 	tween.tween_callback(func(): 
 		current_state = State.RESULT
-		get_tree().call_group("animal_group", "hide")
+		#get_tree().call_group("animal_group", "hide")
 		show_result_text()
 		reset_baskets()
 	)
@@ -176,7 +189,7 @@ func fade_to_result():
 	tween.tween_property(fade, "modulate:a", 0.0, 0.5)
 	
 func reset_baskets():
-	for ball in get_tree().get_nodes_in_group("draggables"):
+	for ball in get_tree().get_nodes_in_group("balls"):
 		ball.get_node("Sprite2D").visible = false
 	for basket in get_tree().get_nodes_in_group("baskets"):
 		basket.reset_basket()
@@ -256,6 +269,7 @@ func fade_to_next_day():
 	tween.tween_callback(reset_for_new_day)
 	tween.tween_interval(1.0)
 	tween.tween_property(fade, "modulate:a", 0.0, 0.5)
+	
 
 func reset_for_new_day():
 	# 1. Clear current animals
@@ -294,11 +308,18 @@ func show_summary_popup():
 	# When they click OK, start the transition to the next day
 	dialog.confirmed.connect(func():
 		dialog.queue_free()
-		
 	)
 	
 	add_child(dialog)
 	dialog.popup_centered()
+	
+func release_animals():
+	for animal in get_tree().get_nodes_in_group("animal_group"):
+		animal.freeze = false
+		# 2. Re-enable sleeping if it was forced
+		animal.sleeping = false
+		animal.is_aligned = false # This lets the animal's own script take over again
+		
 #########################################
 
 ####################################
@@ -332,10 +353,12 @@ func spawn_multiple_rigidbodies(amount: int, type: String):
 			new_body = SHEEP_SCENE.instantiate()
 			new_body.add_to_group("animal_group")
 			sheeps_in += 1
+			print("Sheep in after spawn: " + str(sheeps_in))
 		else:
 			new_body = WOLF_SCENE.instantiate()
 			new_body.add_to_group("animal_group")
 			wolves_in += 1
+			print("Wolves in after spawn: " + str(wolves_in))
 		
 		# 2. Set a random position (so they don't overlap and explode)
 		var random_pos = Vector2(randf_range(100, 500), randf_range(100, 300))
@@ -351,6 +374,7 @@ func _process(delta: float) -> void:
 		if not morning_started:
 			spawn_multiple_rigidbodies(spawn_this_many_sheep, "sheep")
 			spawn_multiple_rigidbodies(spawn_this_many_wolf, "wolf")
+			release_animals()
 			morning_started = true
 			
 		# Constant checking (like your picks)

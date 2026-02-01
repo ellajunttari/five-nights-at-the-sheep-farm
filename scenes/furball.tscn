@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_7yc3j"]
 resource_local_to_scene = true
 
-[node name="furball" type="RigidBody2D" unique_id=1955053531]
+[node name="furball" type="RigidBody2D" unique_id=1955053531 groups=["balls"]]
 collision_layer = 4
 input_pickable = true
 gravity_scale = 0.0
@@ -14,6 +14,7 @@ freeze = true
 script = ExtResource("1_xp8lq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=896560502]
+visible = false
 light_mask = 4
 visibility_layer = 4
 z_index = 100

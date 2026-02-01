@@ -4,6 +4,7 @@ var speed : float = 90.0
 var move_direction = Vector2.ZERO
 var folder_path = "res://assets/sprites/Lamb/"
 var animal_type = "sheep"
+var is_aligned = false
 
 # Get a reference to the Sprite2D child node
 @onready var sprite: Sprite2D = $Sprite2D 
@@ -86,14 +87,24 @@ func pick_sprite():
 #	sprite.texture = new_texture
 
 func _physics_process(_delta):
+	if is_aligned:
+		print("is aligned")
+		return # Do nothing while in the lineup
 	if not freeze:
+		print("not freeze")
 		if global_position.distance_to(get_global_mouse_position()) < 200:
 			move_direction = (global_position - get_global_mouse_position()).normalized()
 			speed = 200.0
 		
 		linear_velocity = move_direction * speed
 	else:
-		linear_velocity = Vector2.ZERO
+		print("freeze???")
+		#linear_velocity = Vector2.ZERO
+		if global_position.distance_to(get_global_mouse_position()) < 200:
+			move_direction = (global_position - get_global_mouse_position()).normalized()
+			speed = 200.0
+		
+		linear_velocity = move_direction * speed
 
 # This function runs the moment the sheep hits a wall
 func _on_sheep_body_entered(body):
@@ -101,7 +112,6 @@ func _on_sheep_body_entered(body):
 	if global_position.distance_to(get_global_mouse_position()) >= 200:
 		# Bounce off: Pick a new random direction
 		choose_new_direction()
-		print("Bounced off a wall!")
 
 func _on_timer_timeout():
 	var chance = randf_range(0, 100)

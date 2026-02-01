@@ -5,6 +5,7 @@ var move_direction = Vector2.ZERO
 var folder_path = "res://assets/sprites/Wolf/"
 var picked_fur = 0
 var animal_type = "wolf"
+var is_aligned = false
 
 # Get a reference to the Sprite2D child node
 @onready var sprite: Sprite2D = $Sprite2D 
@@ -95,7 +96,6 @@ func _on_sheep_body_entered(body):
 	if global_position.distance_to(get_global_mouse_position()) >= 200:
 		# Bounce off: Pick a new random direction
 		choose_new_direction()
-		print("Bounced off a wall!")
 
 func _on_timer_timeout():
 	var chance = randf_range(0, 100)
