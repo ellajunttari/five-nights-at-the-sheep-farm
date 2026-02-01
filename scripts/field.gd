@@ -72,11 +72,17 @@ func fade_transition():
 	var tween = create_tween()
 	tween.tween_property(fade, "modulate:a", 1.0, 1.5) # 0.5 seconds
 	
+	var background_music = get_tree().current_scene.find_child("BackgroundMusic", true, false)
+	background_music.stop()
+	
 	# Wait at black, then change state
 	tween.tween_callback(func(): current_state = State.EVENING)
 	tween.tween_callback(align_animal_in_line)
 	
 	tween.tween_interval(2.0)
+	
+	var evening_music = get_tree().current_scene.find_child("EveningMusic", true, false)
+	evening_music.play()
 	
 	# Fade back to Transparent
 	tween.tween_property(fade, "modulate:a", 0.0, 1.5)
@@ -143,26 +149,31 @@ func show_result_text():
 	# If you have a specific Label for results, use that. 
 	# Otherwise, we'll create a quick one.
 	var result_label = Label.new()
+	var overlay_node
+	var img_node
 	
 	# Check if the chosen animal is a Wolf or a Sheep
 	var result_type = "Sheep"
 	if sheep_to_confirm.has_method("pick_sprite"): # Both have this, so let's check folder_path
 		if "Wolf" in sheep_to_confirm.folder_path:
 			result_type = "WOLF! Oh no!"
+			var bad_wolf_sound = get_tree().current_scene.find_child("ShotWolf", true, false)
+			overlay_node = get_tree().current_scene.find_child("bad_wolf", true, false)
+			bad_wolf_sound.play()
 		else:
 			result_type = "a normal Sheep. Phew!"
-			var overlay_node = get_tree().current_scene.find_child("bad_sheep", true, false)
-			var img_node = overlay_node.get_node("bad_sheep_img")
+			overlay_node = get_tree().current_scene.find_child("bad_sheep", true, false)
+			img_node = overlay_node.get_node("bad_sheep_img")
 			img_node.visible = true
-			var background_music = get_tree().current_scene.find_child("BackgroundMusic", true, false)
-			background_music.stop()
-			var bad_sheep_music = get_tree().current_scene.find_child("SurpriseMusic", true, false)
-			bad_sheep_music.play()
+			var evening_music = get_tree().current_scene.find_child("EveningMusic", true, false)
+			evening_music.stop()
+			var bad_sheep_sound = get_tree().current_scene.find_child("ShotSheep", true, false)
+			bad_sheep_sound.play()
 			print("bad sheep")
 	
 	result_label.text = "You chose: " + result_type
 	result_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	add_child(result_label)
+	overlay_node.add_child(result_label)
 	result_label.z_index = 999
 	
 	# Center it on screen
