@@ -38,6 +38,10 @@ func pickup():
 func surprise():
 	var overlay_node = get_tree().current_scene.find_child("overlay", true, false)
 	overlay_node.get_node("surprise").visible = true
+	var background_music = get_tree().current_scene.find_child("BackgroundMusic", true, false)
+	background_music.stop()
+	var surprise_music = get_tree().current_scene.find_child("SurpriseMusic", true, false)
+	surprise_music.play()
 	print("surprise")
 
 func drop():

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cfjxllyqccort"]
 
 [ext_resource type="Texture2D" uid="uid://ddy3bp2qc8h5f" path="res://assets/sprites/boo.png" id="1_nv86q"]
+[ext_resource type="AudioStream" uid="uid://pwoej8u8fnx2" path="res://assets/sounds/night-ambient-loop-1.wav" id="2_r2eog"]
 
 [node name="overlay" type="CanvasLayer" unique_id=2069641102]
 
@@ -14,3 +15,6 @@ grow_vertical = 2
 texture = ExtResource("1_nv86q")
 expand_mode = 1
 stretch_mode = 6
+
+[node name="SurpriseMusic" type="AudioStreamPlayer" parent="." unique_id=2070776987]
+stream = ExtResource("2_r2eog")

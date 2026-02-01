@@ -82,6 +82,6 @@ script = ExtResource("4_7156t")
 
 [node name="overlay" parent="." unique_id=2069641102 instance=ExtResource("6_wnvii")]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=181697492]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=181697492]
 stream = ExtResource("7_tcubs")
 autoplay = true
