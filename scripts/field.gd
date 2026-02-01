@@ -25,6 +25,9 @@ var picks_left = Global.picks_left
 var current_state = State.MORNING
 #How many sheep to delete
 var delete_this_many_sheep = 0
+var day_label : Label
+
+var was_wolf_chosen : bool = false
 
 const SHEEP_SCENE = preload("uid://uhky4w4cihjo")
 const WOLF_SCENE = preload("uid://cjsj0toqt2gip")
@@ -65,6 +68,7 @@ func restart_picks():
 
 
 ## Minttu Added #########################
+
 func fade_transition():
 	var fade = $CanvasLayer/ColorRect # Make sure the path matches your scene
 	
@@ -118,7 +122,32 @@ func show_selection_popup(selected):
 	sheep_to_confirm.set_highlight(true) # Lock the glow
 	$PickPopup.popup_centered()
 
+func remove_sheep_from_field(amount: int):
+	var all_animals = get_tree().get_nodes_in_group("animal_group")
+	var removed_count = 0
+	
+	for animal in all_animals:
+		if removed_count >= amount:
+			break # Stop once we've deleted enough
+		
+		# Check if it's a sheep (ensure this matches your sheep script variable)
+		if "sheep" in animal.folder_path: 
+			animal.queue_free()
+			removed_count += 1
+
 func _on_popup_confirmed():
+	# Store the result BEFORE deleting the node
+	was_wolf_chosen = "Wolf" in sheep_to_confirm.folder_path
+	if was_wolf_chosen:
+		# WOLF PATH: Player caught a wolf!
+		wolf_count += 1
+		spawn_this_many_wolf = 1
+	else:
+		# SHEEP PATH: Player accidentally picked a sheep
+		spawn_this_many_wolf = 1
+		remove_sheep_from_field(wolves_in)
+	# Delete it now that we've saved the data we need
+	sheep_to_confirm.queue_free()
 	current_state = State.RESULT
 	fade_to_result()
 
@@ -139,37 +168,49 @@ func fade_to_result():
 		current_state = State.RESULT
 		get_tree().call_group("animal_group", "hide")
 		show_result_text()
+		reset_baskets()
 	)
 	
 	# 3. Stay black briefly, then fade out
 	tween.tween_interval(1.0)
 	tween.tween_property(fade, "modulate:a", 0.0, 0.5)
 	
+func reset_baskets():
+	for ball in get_tree().get_nodes_in_group("draggables"):
+		ball.get_node("Sprite2D").visible = false
+	for basket in get_tree().get_nodes_in_group("baskets"):
+		basket.reset_basket()
+	
 func show_result_text():
 	# If you have a specific Label for results, use that. 
 	# Otherwise, we'll create a quick one.
 	var result_label = Label.new()
+
 	var overlay_node
 	var img_node
 	
 	# Check if the chosen animal is a Wolf or a Sheep
-	var result_type = "Sheep"
-	if sheep_to_confirm.has_method("pick_sprite"): # Both have this, so let's check folder_path
-		if "Wolf" in sheep_to_confirm.folder_path:
-			result_type = "WOLF! Oh no!"
-			var bad_wolf_sound = get_tree().current_scene.find_child("ShotWolf", true, false)
-			overlay_node = get_tree().current_scene.find_child("bad_wolf", true, false)
-			bad_wolf_sound.play()
-		else:
-			result_type = "a normal Sheep. Phew!"
-			overlay_node = get_tree().current_scene.find_child("bad_sheep", true, false)
-			img_node = overlay_node.get_node("bad_sheep_img")
-			img_node.visible = true
-			var evening_music = get_tree().current_scene.find_child("EveningMusic", true, false)
-			evening_music.stop()
-			var bad_sheep_sound = get_tree().current_scene.find_child("ShotSheep", true, false)
-			bad_sheep_sound.play()
-			print("bad sheep")
+	var result_type = ""
+	 # Both have this, so let's check folder_path
+	if was_wolf_chosen:
+		result_type = "WOLF! Oh no!"
+		overlay_node = get_tree().current_scene.find_child("bad_wolf", true, false)
+		img_node = overlay_node.get_node("bad_wolf_img")
+		img_node.visible = true
+		var evening_music = get_tree().current_scene.find_child("EveningMusic", true, false)
+		evening_music.stop()
+		var bad_wolf_sound = get_tree().current_scene.find_child("ShotWolf", true, false)
+		bad_wolf_sound.play()
+	else:
+		result_type = "a normal Sheep. Phew!"
+		overlay_node = get_tree().current_scene.find_child("bad_sheep", true, false)
+		img_node = overlay_node.get_node("bad_sheep_img")
+		img_node.visible = true
+		var evening_music = get_tree().current_scene.find_child("EveningMusic", true, false)
+		evening_music.stop()
+		var bad_sheep_sound = get_tree().current_scene.find_child("ShotSheep", true, false)
+		bad_sheep_sound.play()
+		print("bad sheep")
 	
 	result_label.text = "You chose: " + result_type
 	result_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -179,8 +220,85 @@ func show_result_text():
 	# Center it on screen
 	result_label.position = Vector2(0, 0)
 	result_label.z_index = 1000
+	
+	check_game_over_conditions()
 
 
+func check_game_over_conditions():
+	# If there are more wolves than sheep, it's game over
+	if wolves_in > sheeps_in:
+		show_end_screen()
+	else:
+		get_tree().create_timer(3.0).timeout.connect(fade_to_next_day)
+		get_tree().create_timer(4.0).timeout.connect(show_summary_popup)
+
+func show_end_screen():
+	current_state = State.END
+	var end_label = Label.new()
+	end_label.text = "GAME OVER\nThe wolves outnumbered the sheep!"
+	end_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	add_child(end_label)
+	end_label.position = Vector2(-100, 50) # Adjust to your screen center
+	end_label.z_index = 1000
+
+func fade_to_next_day():
+	# Hide the bad sheep overlay if it was shown
+	var overlay_node = get_tree().current_scene.find_child("bad_sheep", true, false)
+	var overlay_node2 = get_tree().current_scene.find_child("bad_wolf", true, false)
+	if overlay_node:
+		overlay_node.get_node("bad_sheep_img").visible = false
+	if overlay_node2:
+		overlay_node2.get_node("bad_wolf_img").visible = false
+	
+	var fade = $CanvasLayer/ColorRect
+	var tween = create_tween()
+	fade.modulate.a = 1.0
+	tween.tween_callback(reset_for_new_day)
+	tween.tween_interval(1.0)
+	tween.tween_property(fade, "modulate:a", 0.0, 0.5)
+
+func reset_for_new_day():
+	# 1. Clear current animals
+	#get_tree().call_group("animal_group", "queue_free")
+	#sheeps_in = 0
+	#wolves_in = 0
+	
+	# 2. Reset game values
+	_current_day += 1
+	Global.picks_left = 5 
+	
+	# 3. Reset state flags
+	current_state = State.MORNING
+	morning_started = false
+	evening_started = false
+	result_started = false
+	
+	day_label.text = "Day " + str(_current_day)
+	
+	# Update your Day label if you kept a reference to it
+	
+func show_summary_popup():
+	var dialog = AcceptDialog.new()
+	dialog.title = "Night Summary"
+	
+	var message = ""
+	if was_wolf_chosen:
+		message = "Success! You caught a wolf.\nThe pack size remains at " + str(wolves_in) + "."
+	else:
+		message = "Oh no! You chose a sheep.\n"
+		message += "The wolves ate " + str(wolves_in) + " other sheep!\n"
+		message += "A new wolf has joined the den."
+	
+	dialog.dialog_text = message
+	
+	# When they click OK, start the transition to the next day
+	dialog.confirmed.connect(func():
+		dialog.queue_free()
+		
+	)
+	
+	add_child(dialog)
+	dialog.popup_centered()
 #########################################
 
 ####################################
@@ -188,11 +306,11 @@ func show_result_text():
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Show what day it is
-	var my_label = Label.new()
-	my_label.text = "Day " + str(_current_day)
-	add_child(my_label)
-	my_label.position = Vector2(0, -270)
-	my_label.z_index = 999
+	day_label = Label.new()
+	day_label.text = "Day " + str(_current_day)
+	add_child(day_label)
+	day_label.position = Vector2(0, -270)
+	day_label.z_index = 999
 
 	var background_music = get_tree().current_scene.find_child("BackgroundMusic", true, false)
 	background_music.play()
@@ -213,9 +331,11 @@ func spawn_multiple_rigidbodies(amount: int, type: String):
 		if type == "sheep":
 			new_body = SHEEP_SCENE.instantiate()
 			new_body.add_to_group("animal_group")
+			sheeps_in += 1
 		else:
 			new_body = WOLF_SCENE.instantiate()
 			new_body.add_to_group("animal_group")
+			wolves_in += 1
 		
 		# 2. Set a random position (so they don't overlap and explode)
 		var random_pos = Vector2(randf_range(100, 500), randf_range(100, 300))

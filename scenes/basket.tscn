@@ -4,7 +4,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_idgsc"]
 
-[node name="Node2D" type="Area2D" unique_id=1150987232]
+[node name="Node2D" type="Area2D" unique_id=1150987232 groups=["baskets"]]
 collision_layer = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=14730541]
