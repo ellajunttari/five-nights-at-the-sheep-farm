@@ -30,3 +30,5 @@ func _input(event) -> void:
 	and event.pressed:
 
 		anim_player.play("ClickingShears")
+		var cursor_sound = get_tree().current_scene.find_child("CursorAudio", true, false)
+		cursor_sound.play()
