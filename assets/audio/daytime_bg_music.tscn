@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://jga7s70as2ne"]
+
+[ext_resource type="AudioStream" path="res://assets/audio/bg_loops/daytime-music-loop.wav" id="1_ayx5e"]
+
+[node name="DaytimeBGMusic" type="AudioStreamPlayer" unique_id=1182233273]
+stream = ExtResource("1_ayx5e")
+autoplay = true
