@@ -201,20 +201,6 @@ func show_result_text():
 		bad_sheep_sound.play()
 		print("bad sheep")
 	
-
-	#if was_wolf_chosen:
-	#	result_type = "WOLF! Oh no!"
-	#else:
-	#	result_type = "a normal Sheep. Phew!"
-	#	var overlay_node = get_tree().current_scene.find_child("bad_sheep", true, false)
-	#	var img_node = overlay_node.get_node("bad_sheep_img")
-	#	img_node.visible = true
-	#	var background_music = get_tree().current_scene.find_child("BackgroundMusic", true, false)
-	#	background_music.stop()
-	#	var bad_sheep_music = get_tree().current_scene.find_child("SurpriseMusic", true, false)
-	#	bad_sheep_music.play()
-	#	print("bad sheep")
-	
 	result_label.text = "You chose: " + result_type
 	result_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	overlay_node.add_child(result_label)
