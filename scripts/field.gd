@@ -29,6 +29,8 @@ var day_label : Label
 
 var was_wolf_chosen : bool = false
 
+var wolf_label : Label 
+
 const SHEEP_SCENE = preload("uid://uhky4w4cihjo")
 const WOLF_SCENE = preload("uid://cjsj0toqt2gip")
 
@@ -140,6 +142,9 @@ func _on_popup_confirmed():
 		spawn_this_many_sheep = 0
 		wolves_in -= 1
 		print(wolf_count)
+		
+		if wolf_label:
+			wolf_label.text = "Wolves Caught: " + str(wolf_count)
 	else:
 		# SHEEP PATH: Player accidentally picked a sheep
 		print("Sheep chosen")
@@ -319,7 +324,6 @@ func release_animals():
 #########################################
 
 ####################################
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Show what day it is
@@ -328,7 +332,21 @@ func _ready() -> void:
 	add_child(day_label)
 	day_label.position = Vector2(0, -270)
 	day_label.z_index = 999
-
+	
+	wolf_label = Label.new()
+	wolf_label.text =  "Wolves Caught: " + str(wolf_count)
+	add_child(wolf_label)
+	wolf_label.position = Vector2(-450, -270)
+	wolf_label.z_index = 999
+	var icon_texture = preload("uid://rh8mwm44d2fk")
+	var icon_sprite = Sprite2D.new()
+	icon_sprite.texture = icon_texture
+	add_child(icon_sprite)
+	icon_sprite.position = Vector2(-520, -270)
+	icon_sprite.z_index = 999
+	icon_sprite.scale = Vector2(0.23,0.23)
+	
+	
 	var background_music = get_tree().current_scene.find_child("BackgroundMusic", true, false)
 	background_music.play()
 	
