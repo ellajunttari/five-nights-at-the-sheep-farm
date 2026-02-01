@@ -112,6 +112,7 @@ _data = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1053106990]
+layer = 50000
 
 [node name="Node2D" type="Node2D" parent="." unique_id=204003505]
 script = ExtResource("2_dg1fc")

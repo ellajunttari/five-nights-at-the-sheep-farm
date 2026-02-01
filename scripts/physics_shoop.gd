@@ -88,17 +88,14 @@ func pick_sprite():
 
 func _physics_process(_delta):
 	if is_aligned:
-		print("is aligned")
 		return # Do nothing while in the lineup
 	if not freeze:
-		print("not freeze")
 		if global_position.distance_to(get_global_mouse_position()) < 200:
 			move_direction = (global_position - get_global_mouse_position()).normalized()
 			speed = 200.0
 		
 		linear_velocity = move_direction * speed
 	else:
-		print("freeze???")
 		#linear_velocity = Vector2.ZERO
 		if global_position.distance_to(get_global_mouse_position()) < 200:
 			move_direction = (global_position - get_global_mouse_position()).normalized()
