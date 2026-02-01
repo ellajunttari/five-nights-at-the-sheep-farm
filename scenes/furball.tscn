@@ -14,7 +14,6 @@ freeze = true
 script = ExtResource("1_xp8lq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=896560502]
-visible = false
 light_mask = 4
 visibility_layer = 4
 z_index = 100

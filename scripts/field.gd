@@ -190,7 +190,8 @@ func fade_to_result():
 	
 func reset_baskets():
 	for ball in get_tree().get_nodes_in_group("balls"):
-		ball.get_node("Sprite2D").visible = false
+		if ball.get_parent().name != "fur":
+			ball.get_node("Sprite2D").visible = false
 	for basket in get_tree().get_nodes_in_group("baskets"):
 		basket.reset_basket()
 	
@@ -225,14 +226,14 @@ func show_result_text():
 		bad_sheep_sound.play()
 		print("bad sheep")
 	
-	result_label.text = "You chose: " + result_type
-	result_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	overlay_node.add_child(result_label)
-	result_label.z_index = 999
+	#result_label.text = "You chose: " + result_type
+	#result_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	#overlay_node.add_child(result_label)
+	#result_label.z_index = 999
 	
 	# Center it on screen
-	result_label.position = Vector2(0, 0)
-	result_label.z_index = 1000
+	#result_label.position = Vector2(0, 0)
+	#result_label.z_index = 1000
 	
 	check_game_over_conditions()
 
