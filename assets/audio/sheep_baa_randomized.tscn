@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://ds0720v0eq1r7"]
+
+[ext_resource type="AudioStream" uid="uid://dped7egi4ofmc" path="res://assets/audio/sheep_baa/sheep_baa_01.wav" id="1_doggp"]
+[ext_resource type="AudioStream" uid="uid://dpv8as67kyvqs" path="res://assets/audio/sheep_baa/sheep_baa_02.wav" id="2_t4lyv"]
+[ext_resource type="AudioStream" uid="uid://clieflerfvvxc" path="res://assets/audio/sheep_baa/sheep_baa_03.wav" id="3_p1iwh"]
+[ext_resource type="AudioStream" uid="uid://n4ysyjkci41n" path="res://assets/audio/sheep_baa/sheep_baa_11.wav" id="3_t4lyv"]
+[ext_resource type="AudioStream" uid="uid://cimecrming3x0" path="res://assets/audio/sheep_baa/sheep_baa_04.wav" id="4_5yeax"]
+[ext_resource type="AudioStream" uid="uid://dpaeycojaqlki" path="res://assets/audio/sheep_baa/sheep_baa_05.wav" id="5_bnwsi"]
+[ext_resource type="AudioStream" uid="uid://d3yuq2w082lab" path="res://assets/audio/sheep_baa/sheep_baa_06.wav" id="6_1s4oj"]
+[ext_resource type="AudioStream" uid="uid://dwv3x5ddc15hb" path="res://assets/audio/sheep_baa/sheep_baa_07.wav" id="7_3jlpu"]
+[ext_resource type="AudioStream" uid="uid://brhsnyhsm7oij" path="res://assets/audio/sheep_baa/sheep_baa_08.wav" id="8_khcee"]
+[ext_resource type="AudioStream" uid="uid://dacu6slmdqedq" path="res://assets/audio/sheep_baa/sheep_baa_09.wav" id="9_0k0jo"]
+[ext_resource type="AudioStream" uid="uid://dfmf37m8exjd3" path="res://assets/audio/sheep_baa/sheep_baa_10.wav" id="10_mnyka"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bxnsv"]
+streams_count = 11
+stream_0/stream = ExtResource("1_doggp")
+stream_1/stream = ExtResource("2_t4lyv")
+stream_2/stream = ExtResource("3_p1iwh")
+stream_3/stream = ExtResource("4_5yeax")
+stream_4/stream = ExtResource("5_bnwsi")
+stream_5/stream = ExtResource("6_1s4oj")
+stream_6/stream = ExtResource("7_3jlpu")
+stream_7/stream = ExtResource("8_khcee")
+stream_8/stream = ExtResource("9_0k0jo")
+stream_9/stream = ExtResource("10_mnyka")
+stream_10/stream = ExtResource("3_t4lyv")
+
+[node name="SheepBaaRandomized" type="AudioStreamPlayer" unique_id=501706632]
+stream = SubResource("AudioStreamRandomizer_bxnsv")
