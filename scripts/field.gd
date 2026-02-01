@@ -27,7 +27,7 @@ var current_state = State.MORNING
 var delete_this_many_sheep = 0
 
 const SHEEP_SCENE = preload("uid://uhky4w4cihjo")
-const WOLF_SCENE = preload("uid://cvc21jfs86jl5")
+const WOLF_SCENE = preload("uid://cjsj0toqt2gip")
 
 ##Minttu Added##########
 #Has morning started
@@ -72,17 +72,25 @@ func fade_transition():
 	var tween = create_tween()
 	tween.tween_property(fade, "modulate:a", 1.0, 1.5) # 0.5 seconds
 	
+	var background_music = get_tree().current_scene.find_child("BackgroundMusic", true, false)
+	background_music.stop()
+	
 	# Wait at black, then change state
 	tween.tween_callback(func(): current_state = State.EVENING)
 	tween.tween_callback(align_animal_in_line)
 	
 	tween.tween_interval(2.0)
 	
+	var evening_music = get_tree().current_scene.find_child("EveningMusic", true, false)
+	evening_music.play()
+	
 	# Fade back to Transparent
 	tween.tween_property(fade, "modulate:a", 0.0, 1.5)
 	
 func align_animal_in_line():
 	var animal_list = get_tree().get_nodes_in_group("animal_group")
+	# SHUFFLE the list so the order is random every time
+	animal_list.shuffle()
 	var start_x = -390 # Where the line starts
 	var start_y = -80 # The height of the line
 	var x_spacing = 195  # Distance between each sheep horizontaly
@@ -141,18 +149,31 @@ func show_result_text():
 	# If you have a specific Label for results, use that. 
 	# Otherwise, we'll create a quick one.
 	var result_label = Label.new()
+	var overlay_node
+	var img_node
 	
 	# Check if the chosen animal is a Wolf or a Sheep
 	var result_type = "Sheep"
 	if sheep_to_confirm.has_method("pick_sprite"): # Both have this, so let's check folder_path
 		if "Wolf" in sheep_to_confirm.folder_path:
 			result_type = "WOLF! Oh no!"
+			var bad_wolf_sound = get_tree().current_scene.find_child("ShotWolf", true, false)
+			overlay_node = get_tree().current_scene.find_child("bad_wolf", true, false)
+			bad_wolf_sound.play()
 		else:
 			result_type = "a normal Sheep. Phew!"
+			overlay_node = get_tree().current_scene.find_child("bad_sheep", true, false)
+			img_node = overlay_node.get_node("bad_sheep_img")
+			img_node.visible = true
+			var evening_music = get_tree().current_scene.find_child("EveningMusic", true, false)
+			evening_music.stop()
+			var bad_sheep_sound = get_tree().current_scene.find_child("ShotSheep", true, false)
+			bad_sheep_sound.play()
+			print("bad sheep")
 	
 	result_label.text = "You chose: " + result_type
 	result_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	add_child(result_label)
+	overlay_node.add_child(result_label)
 	result_label.z_index = 999
 	
 	# Center it on screen
@@ -172,10 +193,15 @@ func _ready() -> void:
 	add_child(my_label)
 	my_label.position = Vector2(0, -270)
 	my_label.z_index = 999
+
+	var background_music = get_tree().current_scene.find_child("BackgroundMusic", true, false)
+	background_music.play()
 	
 	##Minttu added
 	$PickPopup.confirmed.connect(_on_popup_confirmed)
 	$PickPopup.canceled.connect(_on_popup_canceled)
+	
+	randomize() #this is for animal_list so its randomzed everytime
 	##########
 	
 	

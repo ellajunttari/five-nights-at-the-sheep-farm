@@ -7,6 +7,13 @@
 [ext_resource type="Script" uid="uid://vbkjiqyx62c0" path="res://scripts/basket.gd" id="4_7156t"]
 [ext_resource type="PackedScene" uid="uid://cfjxllyqccort" path="res://scenes/overlay.tscn" id="6_wnvii"]
 [ext_resource type="PackedScene" uid="uid://d1rypky5xlj0h" path="res://scenes/Cursor.tscn" id="7_tcubs"]
+[ext_resource type="AudioStream" uid="uid://cy32veqq5vvo1" path="res://assets/audio/bg-loops/daytime-music-loop.wav" id="7_mwwu5"]
+[ext_resource type="PackedScene" uid="uid://dop1wj3gydtai" path="res://scenes/bad_sheep.tscn" id="8_vjqoj"]
+[ext_resource type="AudioStream" uid="uid://petu64lifg0u" path="res://assets/sounds/fluff-to-sack_pop.wav" id="9_aaam2"]
+[ext_resource type="AudioStream" uid="uid://dmabk24x3v27" path="res://assets/sounds/shot_sheep.wav" id="10_5qjf2"]
+[ext_resource type="AudioStream" uid="uid://cqvmhf2hqno3f" path="res://assets/audio/bg-loops/night-ambient-loop-1.wav" id="11_kxpcs"]
+[ext_resource type="AudioStream" uid="uid://ci1av5hp5jl6j" path="res://assets/sounds/shot_wolf.wav" id="12_kxpcs"]
+[ext_resource type="PackedScene" uid="uid://dp1csj6t0cykw" path="res://scenes/bad_wolf.tscn" id="13_35llp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7156t"]
 size = Vector2(333.33337, 2103.3335)
@@ -83,6 +90,7 @@ script = ExtResource("4_7156t")
 [node name="overlay" parent="." unique_id=2069641102 instance=ExtResource("6_wnvii")]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=181697492]
+stream = ExtResource("7_mwwu5")
 autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1658406855]
@@ -92,6 +100,10 @@ modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -2.0
+offset_right = 3.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -102,3 +114,20 @@ title = "Selection"
 ok_button_text = "Yes"
 dialog_text = "Are you sure you want to pick this one?"
 cancel_button_text = "No"
+
+[node name="bad_sheep" parent="." unique_id=1963185830 instance=ExtResource("8_vjqoj")]
+
+[node name="BagPop" type="AudioStreamPlayer" parent="." unique_id=1913688886]
+stream = ExtResource("9_aaam2")
+volume_db = 5.0
+
+[node name="ShotSheep" type="AudioStreamPlayer" parent="." unique_id=205674818]
+stream = ExtResource("10_5qjf2")
+
+[node name="EveningMusic" type="AudioStreamPlayer" parent="." unique_id=1651605278]
+stream = ExtResource("11_kxpcs")
+
+[node name="ShotWolf" type="AudioStreamPlayer" parent="." unique_id=739598281]
+stream = ExtResource("12_kxpcs")
+
+[node name="bad_wolf" parent="." unique_id=1807362297 instance=ExtResource("13_35llp")]
