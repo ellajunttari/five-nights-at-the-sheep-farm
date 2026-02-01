@@ -4,6 +4,7 @@ var speed : float = 90.0
 var move_direction = Vector2.ZERO
 var folder_path = "res://assets/sprites/Wolf/"
 var picked_fur = 0
+var animal_type = "wolf"
 
 # Get a reference to the Sprite2D child node
 @onready var sprite: Sprite2D = $Sprite2D 

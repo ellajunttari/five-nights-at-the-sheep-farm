@@ -3,6 +3,7 @@ extends RigidBody2D
 var speed : float = 90.0
 var move_direction = Vector2.ZERO
 var folder_path = "res://assets/sprites/Lamb/"
+var animal_type = "sheep"
 
 # Get a reference to the Sprite2D child node
 @onready var sprite: Sprite2D = $Sprite2D 
