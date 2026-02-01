@@ -27,7 +27,7 @@ var current_state = State.MORNING
 var delete_this_many_sheep = 0
 
 const SHEEP_SCENE = preload("uid://uhky4w4cihjo")
-const WOLF_SCENE = preload("uid://cvc21jfs86jl5")
+const WOLF_SCENE = preload("uid://cjsj0toqt2gip")
 
 ##Minttu Added##########
 #Has morning started
