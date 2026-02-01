@@ -1,4 +1,3 @@
-res://scenes/field.tscn
+res://scenes/Cursor.tscn
 res://scripts/field.gd
-res://scenes/furball.tscn
-res://scripts/furball.gd
+res://scenes/field.tscn

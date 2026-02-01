@@ -42,12 +42,6 @@ var sheep_to_confirm = null
 ###########################
 
 ############ Function ###############
-
-#go to the next day
-func next_day():
-	_current_day += 1
-
-
 #function to reduce picks
 func reduce_picks():
 	if (picks_left == 0):
@@ -57,8 +51,6 @@ func reduce_picks():
 func restart_picks():
 	picks_left = 5
 	
-
-
 
 ## Minttu Added #########################
 
