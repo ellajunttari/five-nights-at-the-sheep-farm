@@ -115,6 +115,8 @@ cancel_button_text = "No"
 
 [node name="bad_sheep" parent="." unique_id=1963185830 instance=ExtResource("8_vjqoj")]
 
+[node name="bad_wolf" parent="." unique_id=1807362297 instance=ExtResource("13_35llp")]
+
 [node name="BagPop" type="AudioStreamPlayer" parent="." unique_id=1913688886]
 stream = ExtResource("9_aaam2")
 volume_db = 5.0
@@ -127,8 +129,6 @@ stream = ExtResource("11_kxpcs")
 
 [node name="ShotWolf" type="AudioStreamPlayer" parent="." unique_id=739598281]
 stream = ExtResource("12_kxpcs")
-
-[node name="bad_wolf" parent="." unique_id=1807362297 instance=ExtResource("13_35llp")]
 
 [node name="Cursor" parent="." unique_id=1849569036 instance=ExtResource("14_7bjmq")]
 

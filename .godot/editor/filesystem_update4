@@ -1,5 +1,5 @@
 res://scenes/Cursor.tscn
-res://scripts/field.gd
-res://scenes/field.tscn
-res://ClickingShears.res
 res://scenes/bad_sheep.tscn
+res://scenes/field.tscn
+res://scenes/bad_wolf.tscn
+res://scripts/field.gd
