@@ -16,7 +16,7 @@ var sheeps_in : int = 0
 #how many wolves in aitaus
 var wolves_in: int = 0
 #how many sheep to spawn
-var spawn_this_many_sheep: int = 0
+var spawn_this_many_sheep: int = 8
 #How many wolves to spawn
 var spawn_this_many_wolf: int = 2
 #how many picks left aka how many sacks left
@@ -27,7 +27,7 @@ var current_state = State.MORNING
 var delete_this_many_sheep = 0
 
 const SHEEP_SCENE = preload("uid://uhky4w4cihjo")
-const WOLF_SCENE = preload("uid://c5yv0lc21wlup")
+const WOLF_SCENE = preload("uid://cvc21jfs86jl5")
 
 ##Minttu Added##########
 #Has morning started

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cvc21jfs86jl5"]
+[gd_scene format=3 uid="uid://cjsj0toqt2gip"]
 
 [ext_resource type="Script" uid="uid://dy5ybqiy0puxr" path="res://scripts/physics_wulf.gd" id="1_femq2"]
 [ext_resource type="Texture2D" uid="uid://c4jefuvrh12jx" path="res://assets/sprites/shoop_base.png" id="2_p1kx7"]
@@ -84,7 +84,7 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1lmpo"]
 
-[node name="PhysicsWulf" type="RigidBody2D" unique_id=1177162672]
+[node name="PhysicsWulf2" type="RigidBody2D" unique_id=1177162672]
 z_index = 3
 position = Vector2(1, 2)
 collision_layer = 2

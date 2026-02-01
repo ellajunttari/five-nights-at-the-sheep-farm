@@ -27,6 +27,7 @@ func set_highlight(active: bool):
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property(self, "scale", target_scale, 0.1)
 	tween.tween_property(self, "modulate", target_color, 0.1)
+	
 func _on_mouse_entered():
 	var field = get_parent()
 	# Check if we are in evening state before glowing
