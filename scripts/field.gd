@@ -230,6 +230,7 @@ func check_game_over_conditions():
 		show_end_screen()
 	else:
 		get_tree().create_timer(3.0).timeout.connect(fade_to_next_day)
+		get_tree().create_timer(4.0).timeout.connect(show_summary_popup)
 
 func show_end_screen():
 	current_state = State.END
@@ -275,6 +276,29 @@ func reset_for_new_day():
 	day_label.text = "Day " + str(_current_day)
 	
 	# Update your Day label if you kept a reference to it
+	
+func show_summary_popup():
+	var dialog = AcceptDialog.new()
+	dialog.title = "Night Summary"
+	
+	var message = ""
+	if was_wolf_chosen:
+		message = "Success! You caught a wolf.\nThe pack size remains at " + str(wolves_in) + "."
+	else:
+		message = "Oh no! You chose a sheep.\n"
+		message += "The wolves ate " + str(wolves_in) + " other sheep!\n"
+		message += "A new wolf has joined the den."
+	
+	dialog.dialog_text = message
+	
+	# When they click OK, start the transition to the next day
+	dialog.confirmed.connect(func():
+		dialog.queue_free()
+		
+	)
+	
+	add_child(dialog)
+	dialog.popup_centered()
 #########################################
 
 ####################################
