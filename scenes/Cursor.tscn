@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dpxe3seudyo6i" path="res://assets/sprites/curosrs.png" id="1_dg1fc"]
 [ext_resource type="Script" uid="uid://b5nky4f83g336" path="res://scenes/Cursor.gd" id="2_dg1fc"]
 [ext_resource type="Animation" uid="uid://bn81c7w66qanb" path="res://ClickingShears.res" id="3_3evkt"]
+[ext_resource type="Animation" uid="uid://eey73h2atnbk" path="res://TargetCursor.res" id="4_7q1fa"]
 
 [sub_resource type="Animation" id="Animation_3evkt"]
 length = 0.001
@@ -73,11 +74,36 @@ tracks/5/keys = {
 "points": PackedFloat32Array(0, -0.1, 0, 0.1, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:frame_coords")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(2, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:offset")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, 40)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7q1fa"]
 _data = {
 &"ClickingShears": ExtResource("3_3evkt"),
-&"RESET": SubResource("Animation_3evkt")
+&"RESET": SubResource("Animation_3evkt"),
+&"TargetCursor": ExtResource("4_7q1fa")
 }
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1053106990]
@@ -88,7 +114,10 @@ script = ExtResource("2_dg1fc")
 [node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=1077584223]
 texture = ExtResource("1_dg1fc")
 offset = Vector2(40, 40)
-hframes = 2
+flip_h = true
+hframes = 3
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/Sprite2D" unique_id=296555374]
 libraries/ = SubResource("AnimationLibrary_7q1fa")
+autoplay = &"ClickingShears"

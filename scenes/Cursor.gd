@@ -30,3 +30,4 @@ func _input(event) -> void:
 	and event.pressed:
 
 		anim_player.play("ClickingShears")
+		
