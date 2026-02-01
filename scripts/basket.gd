@@ -21,3 +21,7 @@ func _input_event(_viewport, event, _shape_idx):
 				ball.queue_free()
 				sprite.texture = preload("res://assets/sprites/sack_closed.png")
 				break
+				
+func reset_basket():
+	is_full = false
+	sprite.texture = preload("res://assets/sprites/sack_open.png")

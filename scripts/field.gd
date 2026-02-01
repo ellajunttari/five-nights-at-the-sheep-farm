@@ -139,11 +139,18 @@ func fade_to_result():
 		current_state = State.RESULT
 		get_tree().call_group("animal_group", "hide")
 		show_result_text()
+		reset_baskets()
 	)
 	
 	# 3. Stay black briefly, then fade out
 	tween.tween_interval(1.0)
 	tween.tween_property(fade, "modulate:a", 0.0, 0.5)
+	
+func reset_baskets():
+	for ball in get_tree().get_nodes_in_group("draggables"):
+		ball.get_node("Sprite2D").visible = false
+	for basket in get_tree().get_nodes_in_group("baskets"):
+		basket.reset_basket()
 	
 func show_result_text():
 	# If you have a specific Label for results, use that. 
@@ -157,6 +164,11 @@ func show_result_text():
 	if sheep_to_confirm.has_method("pick_sprite"): # Both have this, so let's check folder_path
 		if "Wolf" in sheep_to_confirm.folder_path:
 			result_type = "WOLF! Oh no!"
+			overlay_node = get_tree().current_scene.find_child("bad_wolf", true, false)
+			img_node = overlay_node.get_node("bad_wolf_img")
+			img_node.visible = true
+			var evening_music = get_tree().current_scene.find_child("EveningMusic", true, false)
+			evening_music.stop()
 			var bad_wolf_sound = get_tree().current_scene.find_child("ShotWolf", true, false)
 			overlay_node = get_tree().current_scene.find_child("bad_wolf", true, false)
 			bad_wolf_sound.play()
