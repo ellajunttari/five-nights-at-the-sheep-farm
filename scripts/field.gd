@@ -149,6 +149,14 @@ func show_result_text():
 			result_type = "WOLF! Oh no!"
 		else:
 			result_type = "a normal Sheep. Phew!"
+			var overlay_node = get_tree().current_scene.find_child("bad_sheep", true, false)
+			var img_node = overlay_node.get_node("bad_sheep_img")
+			img_node.visible = true
+			var background_music = get_tree().current_scene.find_child("BackgroundMusic", true, false)
+			background_music.stop()
+			var bad_sheep_music = get_tree().current_scene.find_child("SurpriseMusic", true, false)
+			bad_sheep_music.play()
+			print("bad sheep")
 	
 	result_label.text = "You chose: " + result_type
 	result_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -172,6 +180,9 @@ func _ready() -> void:
 	add_child(my_label)
 	my_label.position = Vector2(0, -270)
 	my_label.z_index = 999
+
+	var background_music = get_tree().current_scene.find_child("BackgroundMusic", true, false)
+	background_music.play()
 	
 	##Minttu added
 	$PickPopup.confirmed.connect(_on_popup_confirmed)
