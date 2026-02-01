@@ -1,7 +1,2 @@
-res://scenes/field.tscn
-res://scripts/field.gd
-res://scripts/furball.gd
-res://scripts/physics_shoop.gd
 res://scenes/physics_wulf.tscn
-res://scenes/physics_shoop.tscn
-res://scripts/physics_wulf.gd
+res://scripts/field.gd

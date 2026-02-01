@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dop1wj3gydtai"]
+
+[ext_resource type="Texture2D" uid="uid://de7arvkmlykea" path="res://assets/Sheep_bad.png" id="1_xfgpc"]
+[ext_resource type="AudioStream" uid="uid://pwoej8u8fnx2" path="res://assets/sounds/night-ambient-loop-1.wav" id="2_u04lv"]
+
+[node name="bad_sheep" type="CanvasLayer" unique_id=2069641102]
+
+[node name="bad_sheep_img" type="TextureRect" parent="." unique_id=198171868]
+visible = false
+z_index = 110
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xfgpc")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="bad_sheep_music" type="AudioStreamPlayer" parent="." unique_id=2070776987]
+stream = ExtResource("2_u04lv")

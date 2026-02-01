@@ -13,6 +13,8 @@ func _input_event(_viewport, event, _shape_idx):
 		for ball in get_tree().get_nodes_in_group("draggables"):
 			if ball.is_held: 
 				ball.drop()
+				var bag_pop_sound = get_tree().current_scene.find_child("BagPop", true, false)
+				bag_pop_sound.play()
 				# Optional: Move it into the basket position
 				ball.global_position = global_position
 				is_full = true
