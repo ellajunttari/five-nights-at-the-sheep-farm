@@ -21,10 +21,13 @@ func pickup():
 	if get_parent().name == "fur": 
 		Global.is_mouse_busy = true # Lock the mouse
 		var fur = get_parent()
-		var wolf = fur.get_parent()
-		wolf.picked_fur += 1
-		if wolf.picked_fur == 5:
-			surprise()
+		var animal = fur.get_parent()
+		if animal.name == "PhysicsWulf":
+			animal.picked_fur += 1
+			if animal.picked_fur == 5:
+				surprise()
+		else:
+			pass
 		is_held = true
 		freeze = true
 		z_index = 100

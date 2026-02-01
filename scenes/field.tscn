@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bvd8titndsf0a" path="res://scenes/basket.tscn" id="3_lptdg"]
 [ext_resource type="Script" uid="uid://vbkjiqyx62c0" path="res://scripts/basket.gd" id="4_7156t"]
 [ext_resource type="PackedScene" uid="uid://cfjxllyqccort" path="res://scenes/overlay.tscn" id="6_wnvii"]
+[ext_resource type="AudioStream" uid="uid://dtpbgocvj0ai8" path="res://assets/sounds/baabaa-wip1.mp3" id="7_tcubs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7156t"]
 size = Vector2(333.33337, 2103.3335)
@@ -60,7 +61,7 @@ visible = false
 z_index = 100
 
 [node name="Basket3" parent="." unique_id=1409703975 instance=ExtResource("3_lptdg")]
-position = Vector2(8, 235)
+position = Vector2(7, 235)
 script = ExtResource("4_7156t")
 
 [node name="Basket1" parent="." unique_id=1150987232 instance=ExtResource("3_lptdg")]
@@ -80,3 +81,7 @@ position = Vector2(191, 237)
 script = ExtResource("4_7156t")
 
 [node name="overlay" parent="." unique_id=2069641102 instance=ExtResource("6_wnvii")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=181697492]
+stream = ExtResource("7_tcubs")
+autoplay = true
