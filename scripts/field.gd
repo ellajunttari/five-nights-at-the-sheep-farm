@@ -83,6 +83,8 @@ func fade_transition():
 	
 func align_animal_in_line():
 	var animal_list = get_tree().get_nodes_in_group("animal_group")
+	# SHUFFLE the list so the order is random every time
+	animal_list.shuffle()
 	var start_x = -390 # Where the line starts
 	var start_y = -80 # The height of the line
 	var x_spacing = 195  # Distance between each sheep horizontaly
@@ -187,6 +189,8 @@ func _ready() -> void:
 	##Minttu added
 	$PickPopup.confirmed.connect(_on_popup_confirmed)
 	$PickPopup.canceled.connect(_on_popup_canceled)
+	
+	randomize() #this is for animal_list so its randomzed everytime
 	##########
 	
 	
