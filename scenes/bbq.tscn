@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://crkcilhx0qftc"]
 
-[ext_resource type="Texture2D" uid="uid://carbk2oodldm7" path="res://assets/BBQ.png" id="1_aw7f2"]
+[ext_resource type="Texture2D" uid="uid://dsgvar2k10too" path="res://assets/sprites/BBQ.png" id="1_oxehn"]
 [ext_resource type="AudioStream" uid="uid://4jdkr7o210fe" path="res://assets/audio/sheep-BBQ.wav" id="2_oxehn"]
+[ext_resource type="Texture2D" uid="uid://fl0e21ikfyqj" path="res://assets/sprites/BBQ_Sensored.png" id="3_i3xey"]
 
 [node name="bbq" type="CanvasLayer" unique_id=2069641102]
 
@@ -13,10 +14,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_aw7f2")
+texture = ExtResource("1_oxehn")
 expand_mode = 1
 stretch_mode = 6
 
 [node name="bbq_music" type="AudioStreamPlayer" parent="." unique_id=2070776987]
 stream = ExtResource("2_oxehn")
 volume_db = 10.0
+
+[node name="bbq_sensored_img" type="TextureRect" parent="." unique_id=595237964]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_i3xey")
+expand_mode = 1
+stretch_mode = 6

@@ -184,7 +184,7 @@ func fade_to_result():
 	)
 	
 	# 3. Stay black briefly, then fade out
-	tween.tween_interval(1.0)
+	tween.tween_interval(4.1)
 	tween.tween_property(fade, "modulate:a", 0.0, 0.5)
 	
 func reset_baskets():
@@ -207,18 +207,28 @@ func show_result_text():
 	 # Both have this, so let's check folder_path
 	if was_wolf_chosen:
 		result_type = "WOLF! Oh no!"
-		overlay_node = get_tree().current_scene.find_child("bad_wolf", true, false)
-		img_node = overlay_node.get_node("bad_wolf_img")
-		img_node.visible = true
+		if Global.show_gore:
+			overlay_node = get_tree().current_scene.find_child("bad_wolf", true, false)
+			img_node = overlay_node.get_node("bad_wolf_img")
+			img_node.visible = true
+		else:
+			overlay_node = get_tree().current_scene.find_child("bad_wolf", true, false)
+			img_node = overlay_node.get_node("bad_wolf_sensored_img")
+			img_node.visible = true
 		var evening_music = get_tree().current_scene.find_child("EveningMusic", true, false)
 		evening_music.stop()
 		var bad_wolf_sound = get_tree().current_scene.find_child("ShotWolf", true, false)
 		bad_wolf_sound.play()
 	else:
 		result_type = "a normal Sheep. Phew!"
-		overlay_node = get_tree().current_scene.find_child("bad_sheep", true, false)
-		img_node = overlay_node.get_node("bad_sheep_img")
-		img_node.visible = true
+		if Global.show_gore:
+			overlay_node = get_tree().current_scene.find_child("bad_sheep", true, false)
+			img_node = overlay_node.get_node("bad_sheep_img")
+			img_node.visible = true
+		else:
+			overlay_node = get_tree().current_scene.find_child("bad_sheep", true, false)
+			img_node = overlay_node.get_node("bad_sheep_sensored_img")
+			img_node.visible = true
 		var evening_music = get_tree().current_scene.find_child("EveningMusic", true, false)
 		evening_music.stop()
 		var bad_sheep_sound = get_tree().current_scene.find_child("ShotSheep", true, false)
@@ -242,7 +252,7 @@ func check_game_over_conditions():
 	if wolves_in+1 > sheeps_in:
 		show_end_screen()
 	else:
-		get_tree().create_timer(3.0).timeout.connect(fade_to_next_day)
+		get_tree().create_timer(3.8).timeout.connect(fade_to_next_day)
 		get_tree().create_timer(4.0).timeout.connect(show_summary_popup)
 
 func show_end_screen():
@@ -254,8 +264,10 @@ func show_end_screen():
 	if overlay_node2:
 		overlay_node2.get_node("bad_wolf_img").visible = false
 	var bbq_node = get_tree().current_scene.find_child("bbq", true, false)
-	if bbq_node:
+	if Global.show_gore:
 		bbq_node.get_node("bbq_img").visible = true
+	else:
+		bbq_node.get_node("bbq_sensored_img").visible = true
 	var end_label = Label.new()
 	end_label.text = "GAME OVER\nThe wolves outnumbered the sheep!"
 	end_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -266,19 +278,28 @@ func show_end_screen():
 	bbq_sound.play()
 
 func fade_to_next_day():
-	# Hide the bad sheep overlay if it was shown
-	var overlay_node = get_tree().current_scene.find_child("bad_sheep", true, false)
-	var overlay_node2 = get_tree().current_scene.find_child("bad_wolf", true, false)
-	if overlay_node:
-		overlay_node.get_node("bad_sheep_img").visible = false
-	if overlay_node2:
-		overlay_node2.get_node("bad_wolf_img").visible = false
+	if Global.show_gore:
+		# Hide the bad sheep overlay if it was shown
+		var overlay_node = get_tree().current_scene.find_child("bad_sheep", true, false)
+		var overlay_node2 = get_tree().current_scene.find_child("bad_wolf", true, false)
+		if overlay_node:
+			overlay_node.get_node("bad_sheep_img").visible = false
+		if overlay_node2:
+			overlay_node2.get_node("bad_wolf_img").visible = false
+	else:
+		# Hide the bad sheep overlay if it was shown
+		var overlay_node = get_tree().current_scene.find_child("bad_sheep", true, false)
+		var overlay_node2 = get_tree().current_scene.find_child("bad_wolf", true, false)
+		if overlay_node:
+			overlay_node.get_node("bad_sheep_sensored_img").visible = false
+		if overlay_node2:
+			overlay_node2.get_node("bad_wolf_sensored_img").visible = false
 	
 	var fade = $CanvasLayer/ColorRect
 	var tween = create_tween()
 	fade.modulate.a = 1.0
 	tween.tween_callback(reset_for_new_day)
-	tween.tween_interval(1.0)
+	tween.tween_interval(1.3)
 	tween.tween_property(fade, "modulate:a", 0.0, 0.5)
 	
 
@@ -344,6 +365,7 @@ func release_animals():
 ####################################
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	show_gore_warning()
 	# Show what day it is
 	day_label = Label.new()
 	day_label.text = "Day " + str(_current_day)
@@ -374,8 +396,28 @@ func _ready() -> void:
 	
 	randomize() #this is for animal_list so its randomzed everytime
 	##########
+
+func show_gore_warning():
+	var dialog = ConfirmationDialog.new()
+	dialog.title = "Content Warning"
+	dialog.dialog_text = "This game contains gory images. \nWould you like to keep them enabled?"
+	dialog.ok_button_text = "Yes, show gore"
+	dialog.get_cancel_button().text = "No, hide gore"
 	
+	add_child(dialog)
+	dialog.popup_centered()
+
+	# If they click "Yes" (OK)
+	dialog.confirmed.connect(func():
+		Global.show_gore = true
+		dialog.queue_free()
+	)
 	
+	# If they click "No" (Cancel)
+	dialog.canceled.connect(func():
+		Global.show_gore = false
+		dialog.queue_free()
+	)
 
 func spawn_multiple_rigidbodies(amount: int, type: String):
 	for i in range(amount):
