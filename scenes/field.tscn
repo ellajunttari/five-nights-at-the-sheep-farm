@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bvd8titndsf0a" path="res://scenes/basket.tscn" id="3_lptdg"]
 [ext_resource type="Script" uid="uid://vbkjiqyx62c0" path="res://scripts/basket.gd" id="4_7156t"]
 [ext_resource type="PackedScene" uid="uid://cfjxllyqccort" path="res://scenes/overlay.tscn" id="6_wnvii"]
+[ext_resource type="PackedScene" uid="uid://d1rypky5xlj0h" path="res://scenes/Cursor.tscn" id="7_tcubs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7156t"]
 size = Vector2(333.33337, 2103.3335)
@@ -101,3 +102,5 @@ title = "Selection"
 ok_button_text = "Yes"
 dialog_text = "Are you sure you want to pick this one?"
 cancel_button_text = "No"
+
+[node name="CanvasLayer2" parent="." unique_id=1053106990 instance=ExtResource("7_tcubs")]
