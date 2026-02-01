@@ -51,6 +51,8 @@ func drop():
 	
 	# Optional: Remove from the group so it's no longer "draggable"
 	remove_from_group("draggables")
+	if Global.picks_left <= 0:
+		Global.picks_left = -1
 
 func _physics_process(_delta):
 	if is_held:
