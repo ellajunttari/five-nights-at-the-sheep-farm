@@ -46,6 +46,7 @@ func surprise():
 	var surprise_music = get_tree().current_scene.find_child("SurpriseMusic", true, false)
 	surprise_music.play()
 	print("surprise")
+	#jotenkin niin, että päivä alkaa alusta. Nyt pelaaja joutuu sulkemaan ja avaaamaan pelin uudestaan
 	
 	var shake_intensity = 20.0
 	var tween = create_tween()

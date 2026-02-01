@@ -1,2 +1,4 @@
-res://scenes/physics_wulf.tscn
+res://scenes/field.tscn
 res://scripts/field.gd
+res://scenes/furball.tscn
+res://scripts/furball.gd
