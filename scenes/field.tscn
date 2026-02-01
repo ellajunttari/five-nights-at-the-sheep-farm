@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://dp1csj6t0cykw" path="res://scenes/bad_wolf.tscn" id="13_35llp"]
 [ext_resource type="PackedScene" uid="uid://d1rypky5xlj0h" path="res://scenes/Cursor.tscn" id="14_7bjmq"]
 [ext_resource type="PackedScene" uid="uid://jga7s70as2ne" path="res://assets/audio/daytime_bg_music.tscn" id="14_bsxxv"]
+[ext_resource type="AudioStream" uid="uid://c8f37l6nll1ls" path="res://assets/audio/sheep_fanfare/sheep_fanfare_2.wav" id="15_b7dnn"]
+[ext_resource type="AudioStream" uid="uid://dqjftih3g2y2l" path="res://assets/audio/wolf_unedited/wolf_howl_2.wav" id="16_r157f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7156t"]
 size = Vector2(333.33337, 2103.3335)
@@ -131,3 +133,9 @@ stream = ExtResource("12_kxpcs")
 [node name="Cursor" parent="." unique_id=1849569036 instance=ExtResource("14_7bjmq")]
 
 [node name="BackgroundMusic" parent="." unique_id=1182233273 instance=ExtResource("14_bsxxv")]
+
+[node name="DaySuccessSFX" type="AudioStreamPlayer" parent="." unique_id=1921215255]
+stream = ExtResource("15_b7dnn")
+
+[node name="DayFailSFX" type="AudioStreamPlayer" parent="." unique_id=543334061]
+stream = ExtResource("16_r157f")

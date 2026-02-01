@@ -303,12 +303,14 @@ func show_summary_popup():
 	var message = ""
 	if was_wolf_chosen:
 		message = "Success! You caught a wolf.\nThe pack size remains at " + str(wolves_in) + "."
-		#var background_music = get_tree().current_scene.find_child("BackgroundMusic", true, false)
-		#background_music.play()
+		var daySuccessSFX = get_tree().current_scene.find_child("DaySuccessSFX", true, false)
+		daySuccessSFX.play()
 	else:
 		message = "Oh no! You chose a sheep.\n"
 		message += "The wolves ate " + str(wolves_in) + " other sheep!\n"
 		message += "A new wolf has joined the den."
+		var dayFailSFX = get_tree().current_scene.find_child("DayFailSFX", true, false)
+		dayFailSFX.play()
 	
 	dialog.dialog_text = message
 	
