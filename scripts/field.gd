@@ -41,9 +41,14 @@ var evening_started : bool = false
 var result_started : bool = false
 
 var sheep_to_confirm = null
+
+var day_texture = preload("uid://56l1t3n3xr0t")
+var evening_texture = preload("uid://c2gfh2qbnqh8b")
+
 ###########################
 
 ############ Function ###############
+
 #function to reduce picks
 func reduce_picks():
 	if (picks_left == 0):
@@ -399,6 +404,7 @@ func _process(delta: float) -> void:
 			release_animals()
 			morning_started = true
 			Global.Shears_Cursor = true
+			$Background.texture = day_texture
 			
 		# Constant checking (like your picks)
 		if Global.picks_left == -1:
@@ -412,6 +418,8 @@ func _process(delta: float) -> void:
 		if not evening_started:
 			evening_started = true
 			Global.Shears_Cursor = false
+			await get_tree().create_timer(3).timeout
+			$Background.texture = evening_texture
 
 	elif current_state == State.RESULT:
 		if not result_started:
