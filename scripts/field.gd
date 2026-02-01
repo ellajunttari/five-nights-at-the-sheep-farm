@@ -285,6 +285,10 @@ func reset_for_new_day():
 	
 	day_label.text = "Day " + str(_current_day)
 	
+	#Start playing BG music again
+	var background_music = get_tree().current_scene.find_child("BackgroundMusic", true, false)
+	background_music.play()
+	
 	# Update your Day label if you kept a reference to it
 	
 func show_summary_popup():
@@ -294,6 +298,8 @@ func show_summary_popup():
 	var message = ""
 	if was_wolf_chosen:
 		message = "Success! You caught a wolf.\nThe pack size remains at " + str(wolves_in) + "."
+		#var background_music = get_tree().current_scene.find_child("BackgroundMusic", true, false)
+		#background_music.play()
 	else:
 		message = "Oh no! You chose a sheep.\n"
 		message += "The wolves ate " + str(wolves_in) + " other sheep!\n"
