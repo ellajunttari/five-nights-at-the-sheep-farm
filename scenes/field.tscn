@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://ci1av5hp5jl6j" path="res://assets/sounds/shot_wolf.wav" id="12_kxpcs"]
 [ext_resource type="PackedScene" uid="uid://dp1csj6t0cykw" path="res://scenes/bad_wolf.tscn" id="13_35llp"]
 [ext_resource type="PackedScene" uid="uid://d1rypky5xlj0h" path="res://scenes/Cursor.tscn" id="14_7bjmq"]
-[ext_resource type="PackedScene" uid="uid://jga7s70as2ne" path="res://assets/audio/daytime_bg_music.tscn" id="14_bsxxv"]
+[ext_resource type="PackedScene" path="res://assets/audio/daytime_bg_music.tscn" id="14_bsxxv"]
 [ext_resource type="AudioStream" uid="uid://c8f37l6nll1ls" path="res://assets/audio/sheep_fanfare/sheep_fanfare_2.wav" id="15_b7dnn"]
 [ext_resource type="AudioStream" uid="uid://dqjftih3g2y2l" path="res://assets/audio/wolf_unedited/wolf_howl_2.wav" id="16_r157f"]
 
@@ -24,7 +24,6 @@ size = Vector2(333.33337, 2103.3335)
 size = Vector2(3281.6665, 415.8334)
 
 [node name="Field" type="Node2D" unique_id=328235976]
-position = Vector2(-5, 10)
 script = ExtResource("1_pn4dk")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=443372418]
