@@ -137,7 +137,7 @@ func remove_sheep_from_field(amount: int):
 
 func _on_popup_confirmed():
 	# Store the result BEFORE deleting the node
-	was_wolf_chosen = "wolf" in sheep_to_confirm.folder_path
+	was_wolf_chosen = "Wolf" in sheep_to_confirm.folder_path
 	if was_wolf_chosen:
 		# WOLF PATH: Player caught a wolf!
 		wolf_count += 1
@@ -194,12 +194,12 @@ func show_result_text():
 	 # Both have this, so let's check folder_path
 	if was_wolf_chosen:
 		result_type = "WOLF! Oh no!"
+		overlay_node = get_tree().current_scene.find_child("bad_wolf", true, false)
 		img_node = overlay_node.get_node("bad_wolf_img")
 		img_node.visible = true
 		var evening_music = get_tree().current_scene.find_child("EveningMusic", true, false)
 		evening_music.stop()
 		var bad_wolf_sound = get_tree().current_scene.find_child("ShotWolf", true, false)
-		overlay_node = get_tree().current_scene.find_child("bad_wolf", true, false)
 		bad_wolf_sound.play()
 	else:
 		result_type = "a normal Sheep. Phew!"
@@ -243,8 +243,11 @@ func show_end_screen():
 func fade_to_next_day():
 	# Hide the bad sheep overlay if it was shown
 	var overlay_node = get_tree().current_scene.find_child("bad_sheep", true, false)
+	var overlay_node2 = get_tree().current_scene.find_child("bad_wolf", true, false)
 	if overlay_node:
 		overlay_node.get_node("bad_sheep_img").visible = false
+	if overlay_node2:
+		overlay_node2.get_node("bad_wolf_img").visible = false
 	
 	var fade = $CanvasLayer/ColorRect
 	var tween = create_tween()
