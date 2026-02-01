@@ -1,28 +1,27 @@
 [gd_scene format=3 uid="uid://d1rypky5xlj0h"]
 
-[ext_resource type="Texture2D" uid="uid://dpxe3seudyo6i" path="res://assets/sprites/curosrs.png" id="1_dg1fc"]
+[ext_resource type="Texture2D" uid="uid://xibq64e2eoat" path="res://assets/sprites/curosrs.png" id="1_dg1fc"]
 [ext_resource type="Script" uid="uid://b5nky4f83g336" path="res://scenes/Cursor.gd" id="2_dg1fc"]
 [ext_resource type="Animation" uid="uid://bn81c7w66qanb" path="res://ClickingShears.res" id="3_3evkt"]
 [ext_resource type="AudioStream" uid="uid://r2e15382x4tc" path="res://assets/sounds/shears.wav" id="4_7q1fa"]
 
 [sub_resource type="Animation" id="Animation_3evkt"]
 length = 0.13
-tracks/0/type = "value"
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath(".:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(-0.011628397),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(45, -0.005, 0, 0.005, 0),
+"times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:x")
+tracks/1/path = NodePath(".:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -33,18 +32,18 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:position:y")
+tracks/2/path = NodePath(".:scale:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(2),
-"points": PackedFloat32Array(45, -0.005, 0, 0.005, 0),
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.05, 0, 0.05, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath(".:scale:x")
+tracks/3/path = NodePath(".:scale:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -55,44 +54,33 @@ tracks/3/keys = {
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath(".:scale:y")
+tracks/4/path = NodePath(".:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.05, 0, 0.05, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.1, 0, 0.1, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath(".:frame_coords")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:frame_coords")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2i(0, 0)]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath(".:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
