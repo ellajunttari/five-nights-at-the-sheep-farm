@@ -46,13 +46,6 @@ var sheep_to_confirm = null
 #go to the next day
 func next_day():
 	_current_day += 1
-	
-
-#function to delete sheeps
-func deleteSheep(how_many):
-	#reduce sheep count
-	if (how_many != 0):
-		sheeps_in -= how_many
 
 
 #function to reduce picks
@@ -132,6 +125,8 @@ func remove_sheep_from_field(amount: int):
 		
 		if animal.animal_type == "sheep": 
 			print("Deleting sheep")
+			#reduce sheep count
+			sheeps_in -= 1
 			# 1. KILL the node (happens at end of frame)
 			animal.queue_free()
 			
@@ -151,14 +146,16 @@ func _on_popup_confirmed():
 		wolf_count += 1
 		spawn_this_many_wolf = 1
 		spawn_this_many_sheep = 0
+		wolves_in -= 1
 		print(wolf_count)
 	else:
 		# SHEEP PATH: Player accidentally picked a sheep
 		print("Sheep chosen")
 		spawn_this_many_wolf = 1
 		spawn_this_many_sheep = 0
+		sheeps_in -= 1
 		#2
-		remove_sheep_from_field(wolves_in)
+		remove_sheep_from_field(wolves_in+1)
 	# Delete it now that we've saved the data we need
 	sheep_to_confirm.queue_free()
 	current_state = State.RESULT
@@ -234,13 +231,13 @@ func show_result_text():
 	# Center it on screen
 	#result_label.position = Vector2(0, 0)
 	#result_label.z_index = 1000
-	
 	check_game_over_conditions()
 
 
 func check_game_over_conditions():
 	# If there are more wolves than sheep, it's game over
-	if wolves_in > sheeps_in:
+	print("Game over condition: wolves: " + str(wolves_in) + "+1 sheep: " + str(sheeps_in))
+	if wolves_in+1 > sheeps_in:
 		show_end_screen()
 	else:
 		get_tree().create_timer(3.0).timeout.connect(fade_to_next_day)
@@ -248,6 +245,12 @@ func check_game_over_conditions():
 
 func show_end_screen():
 	current_state = State.END
+	var overlay_node = get_tree().current_scene.find_child("bad_sheep", true, false)
+	var overlay_node2 = get_tree().current_scene.find_child("bad_wolf", true, false)
+	if overlay_node:
+		overlay_node.get_node("bad_sheep_img").visible = false
+	if overlay_node2:
+		overlay_node2.get_node("bad_wolf_img").visible = false
 	var end_label = Label.new()
 	end_label.text = "GAME OVER\nThe wolves outnumbered the sheep!"
 	end_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -361,7 +364,7 @@ func spawn_multiple_rigidbodies(amount: int, type: String):
 			wolves_in += 1
 			print("Wolves in after spawn: " + str(wolves_in))
 		
-		# 2. Set a random position (so they don't overlap and explode)
+		# 2. Set a random position (so tfreehey don't overlap and explode)
 		var random_pos = Vector2(randf_range(100, 500), randf_range(100, 300))
 		new_body.position = random_pos
 		new_body.z_index = 5
